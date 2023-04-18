@@ -57,7 +57,10 @@ add_library( # Sets the name of the library.
         #app
         engine/Application/Application.cpp
         #game objects
-
+        Objects/Sumo/Sumo.cpp
+        Objects/Terrain/Terrain.cpp
+        Objects/CameraController/CameraController.cpp
+        Objects/Ball/Ball.cpp
         # Provides a relative path to your source file(s).
         main.cpp
 

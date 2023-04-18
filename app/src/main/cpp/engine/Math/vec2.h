@@ -80,8 +80,8 @@ namespace ASEngine {
         //rotate
         vec2 rotate( float angle) {
             vec2 out{};
-            out.x = x * cos(angle) - y * sin(angle);
-            out.y = x * sin(angle) + y * cos(angle);
+            out.x = x * cos(angle) + y * sin(angle);
+            out.y = -x * sin(angle) + y * cos(angle);
             return out;
         }
 

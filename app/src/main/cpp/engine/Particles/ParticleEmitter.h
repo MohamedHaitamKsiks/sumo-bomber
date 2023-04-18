@@ -31,6 +31,7 @@ namespace ASEngine {
 		uint32_t particlesNumber = 1;
 		//emitter position
 		vec2 position = vec2::zero();
+		float rotation = 0.0f;
 
 		//particle desciptor
 		ParticleDescriptor* particleDescriptor;

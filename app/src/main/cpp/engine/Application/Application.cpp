@@ -63,7 +63,7 @@ namespace ASEngine {
 		//fps
 		std::stringstream ss;
 		ss << int(1.0f / delta) << " FPS\n";
-		ss << Screen::getWindowWidth() << ", : . " << Screen::getWindowHeight();
+		//ss << Screen::getWindowWidth() << ", : . " << Screen::getWindowHeight();
 		//draw fps
 		for (int r = 1; r <= 2; r++) {
 			if (r > 0) {

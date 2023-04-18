@@ -34,6 +34,10 @@ namespace ASEngine {
 		ParticleDescriptorParam<float> velocity{0.0f};
 		//angle
 		ParticleDescriptorParam<float> angle{0.0f};
+		//scale
+		ParticleDescriptorParam<float> scale{1.0f};
+		//scale speed
+		ParticleDescriptorParam<float> scaleSpeed{0.0f};
 		//frame
 		ParticleDescriptorParam<float> frame{0.0f};
 		//framerate

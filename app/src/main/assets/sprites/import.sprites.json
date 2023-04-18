@@ -1,3 +1,74 @@
 [
-
+  {
+    "name": "spr_sumo_red",
+    "image": "sumo/sumo_red.png",
+    "frames": 2,
+    "offset": {
+      "x": 40.0,
+      "y": 40.0
+    }
+  },
+  {
+    "name": "spr_sumo_blue",
+    "image": "sumo/sumo_blue.png",
+    "frames": 2,
+    "offset": {
+      "x": 40.0,
+      "y": 40.0
+    }
+  },
+  {
+    "name": "spr_sumo_dust",
+    "image": "sumo/sumo_dust.png",
+    "frames": 1,
+    "offset": {
+      "x": 16.0,
+      "y": 16.0
+    }
+  },
+  {
+    "name": "spr_sumo_stun_particles",
+    "image": "sumo/sumo_stun_particles.png",
+    "frames": 12,
+    "offset": {
+      "x": 24.0,
+      "y": 24.0
+    }
+  },
+  {
+    "name": "spr_pitch_arrow",
+    "image": "ui/shoot_arrow.png",
+    "frames": 1,
+    "offset": {
+      "x": -32.0,
+      "y": 32.0
+    }
+  },
+  {
+    "name": "spr_ball",
+    "image": "ball/ball.png",
+    "frames": 7,
+    "offset": {
+      "x": 16.0,
+      "y": 16.0
+    }
+  },
+  {
+    "name": "spr_floor",
+    "image": "floor/floor.png",
+    "frames": 5,
+    "offset": {
+      "x": 0.0,
+      "y": 0.0
+    }
+  },
+  {
+    "name": "spr_joystick",
+    "image": "ui/joystick.png",
+    "frames": 2,
+    "offset": {
+      "x": 32.0,
+      "y": 32.0
+    }
+  }
 ]

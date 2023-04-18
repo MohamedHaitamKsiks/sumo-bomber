@@ -7,7 +7,9 @@
 namespace ASEngine {
 
     mat3 Camera::getMatrix() {
-        return mat3::translate(position * -1.0f) * mat3::scale(vec2::one() * zoom);
+        return  mat3::translate(position * -1.0f) *
+                mat3::scale(vec2::one() * zoom) *
+                mat3::translate(offset);
     }
 
     Camera* Camera::current = nullptr;

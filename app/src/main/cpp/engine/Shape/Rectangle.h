@@ -16,6 +16,9 @@ namespace ASEngine {
 		// check intersection with other Rectangle
 		bool intersectWith(Rectangle& other);
 
+		// check if it's fully in other Rectangle
+		bool inside(Rectangle& other);
+
 		// check point inside rectangle
 		bool pointInside(vec2 point);
 	};

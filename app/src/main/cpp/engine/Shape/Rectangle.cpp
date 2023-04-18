@@ -19,4 +19,9 @@ namespace ASEngine {
 				point.y > position.y &&
 				point.y < position.y + size.y;
 	}
+
+	bool Rectangle::inside(Rectangle &other) {
+		return 	other.pointInside(position) &&
+				other.pointInside(position + size);
+	}
 } // ASEngine

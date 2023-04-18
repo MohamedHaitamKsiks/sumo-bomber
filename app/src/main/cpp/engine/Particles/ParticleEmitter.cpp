@@ -23,11 +23,17 @@ namespace ASEngine {
 
 		//set velocity
 		float velocity = Random::rand_rangef(particleDescriptor->velocity.min, particleDescriptor->velocity.max);
-		float direction =  Random::rand_rangef(particleDescriptor->direction.min, particleDescriptor->direction.max);
+		float direction =  Random::rand_rangef(particleDescriptor->direction.min, particleDescriptor->direction.max) + rotation;
 		particles[currentParticlesNumber].velocity = vec2::one().rotate(direction) * velocity;
 
 		//set angle
-		particles[currentParticlesNumber].angle = Random::rand_rangef(particleDescriptor->angle.min, particleDescriptor->angle.max);
+		particles[currentParticlesNumber].angle = Random::rand_rangef(particleDescriptor->angle.min, particleDescriptor->angle.max) + rotation;
+
+		//set scale
+		particles[currentParticlesNumber].scale = Random::rand_rangef(particleDescriptor->scale.min, particleDescriptor->scale.max);
+
+		//set scale speed
+		particles[currentParticlesNumber].scaleSpeed = Random::rand_rangef(particleDescriptor->scaleSpeed.min, particleDescriptor->scaleSpeed.max);
 
 		//set frame
 		float frame = Random::rand_rangef(particleDescriptor->frame.min, particleDescriptor->frame.max);
@@ -42,6 +48,8 @@ namespace ASEngine {
 
 	//start emition
 	void ParticleEmitter::emit() {
+		if (emitted)
+			return;
 		particles.resize(particlesNumber);
 		currentParticlesNumber = 0;
 		emitted = true;
@@ -68,6 +76,10 @@ namespace ASEngine {
 		for (int i = 0; i < currentParticlesNumber; i++)  {
 			//update position
 			particles[i].position = particles[i].position + particles[i].velocity * delta;
+			//update scale
+			particles[i].scale += particles[i].scaleSpeed * delta;
+			if (particles[i].scale < 0.0f)
+				particles[i].scale = 0.0f;
 			//update frame rate
 			particles[i].frame += particles[i].frameRate * delta;
 			//check animation loop
@@ -85,7 +97,7 @@ namespace ASEngine {
 			return;
 		//particles  draw
 		for (int i = 0; i < currentParticlesNumber; i++) {
-			graphics.drawSprite(spriteId, uint32_t(particles[i].frame), particles[i].position, vec2::one(), particles[i].angle, Color::white);
+			graphics.drawSprite(spriteId, uint32_t(particles[i].frame), particles[i].position, vec2::one() * particles[i].scale, particles[i].angle, Color::white);
 		}
 	}
 

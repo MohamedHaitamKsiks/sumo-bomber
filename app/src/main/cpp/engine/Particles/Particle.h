@@ -15,6 +15,7 @@ namespace ASEngine {
 		vec2 velocity = vec2{0.0f, 0.0f};
 		float angle = 0.0f;
 		float scale = 1.0f;
+		float scaleSpeed = 0.0f;
 		Color modulate = Color::black;
 		float life = 1.0f;
 		float frame = 0.0f;
