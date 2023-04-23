@@ -4,6 +4,7 @@
 
 #include "CameraController.h"
 
+
 void CameraController::onCreate() {
 
 }
@@ -12,6 +13,12 @@ void CameraController::onUpdate(float delta) {
 	if (time < dur) {
 		Camera::current->offset = vec2::one().rotate(rotation) * mag * sin(time * 2.0f * M_PI * freq) * (1.0f - time / dur);
 		time += delta;
+	}
+
+	//slow motion timer
+	slowMotionTimer -= delta;
+	if (slowMotionTimer <= 0.0f) {
+		Instance::timeScale = 1.0f;
 	}
 }
 
@@ -31,5 +38,10 @@ void CameraController::onDraw(Graphics &graphics) {
 
 void CameraController::onInputEvent(InputEvent event) {
 
+}
+
+void CameraController::slowMotion(float _scale, float _dur) {
+	Instance::timeScale = _scale;
+	slowMotionTimer = _dur * _scale;
 }
 

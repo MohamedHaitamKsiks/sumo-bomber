@@ -21,6 +21,8 @@ namespace ASEngine {
         static GameObject* create(GameObjectID name);
 		//find by object id
 		static GameObject* find(const GameObjectID& name);
+		//time scale
+		static float timeScale;
 
         //destroy instance
         static void destroy(GameObject* instance);

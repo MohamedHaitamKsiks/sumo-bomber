@@ -28,10 +28,16 @@ class Sumo: public GameObject {
 	vec2 velocity{0.0f, 0.0f};
 	const float MAX_SPEED = 120.0f;
 	const float ACC = 900.0f;
+
 	//controls
 	bool pointerDown = false;
 	int pointerIndex = -1;
 	vec2 pointerDownPosition{0.0f, 0.0f};
+	//controls
+	Rectangle joystickArea{};
+	Rectangle buttonArea{};
+	//how much the joystick have in the button area
+	float joystickButtonRation = 0.6f;
 
 	//animation
 	float walkRotation = 0.0f;
@@ -56,8 +62,21 @@ class Sumo: public GameObject {
 
 	//grab
 	float pitchAngle = 0.0f;
-	float pitchAngleSpeed = M_PI;
+	float pitchAngleSpeed = 1.22f * M_PI;
 	float arrowScale = 0.0f;
+	const float GRAB_DURATION = 3.0f;
+	float grabTimer = GRAB_DURATION;
+	//heat
+	const float GRAB_HEAT_SCALE = 1.5f;
+	const float OVERHEAT_STUN_DURATION = 1.0f;
+	const float OVERHEAT_PUSHBACK_SPEED = 200.0f;
+	const float OVERHEAT_BALL_SPEED = 50.0f;
+	//heat modulate
+	Color modulate = Color::white;
+	const Color heatModulate = {4.0f, 1.0f, 1.0f, 1.0f};
+	//smoke particles
+	static ParticleDescriptor smokeDescriptor;
+	ParticleEmitter smokeEmitter{};
 
 	//ball
 	Ball* ball = nullptr;
@@ -86,8 +105,8 @@ class Sumo: public GameObject {
 
 	//ball grab/throw
 	void grab();
-
 	void pitch();
+	void overheat();
 
 	//draw to screen
 	void onDraw(Graphics& graphics);
@@ -95,6 +114,9 @@ class Sumo: public GameObject {
 	void drawSumo(Graphics& graphics, vec2 position, vec2 scale, float rotation);
 	//draw joystick
 	void drawJoystick(Graphics& graphics);
+
+	//on ball entered
+	void onBallEntered();
 
 	//on input
 	void onInputEvent(InputEvent event);

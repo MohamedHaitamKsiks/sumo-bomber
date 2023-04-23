@@ -16,42 +16,58 @@ namespace ASEngine {
 
 	//add particle
 	void ParticleEmitter::addParticle() {
+		//find first free index
+		uint32_t freeIndex = 0;
+		while (particles[freeIndex].life > 0.0f) {
+			freeIndex++;
+		}
+
+		//if freeIndex is end
+		if (freeIndex == EMITTER_MAX_PARTICLES)
+			return;
+
+		//set life
+		particles[freeIndex].life = life;
+
 		//set position
 		float positionAngle = Random::rand_rangef(0.0f, 2.0f * M_PI);
 		float positionRadius = Random::rand_rangef(0.0f, emitionRadius);
-		particles[currentParticlesNumber].position = position + vec2::one().rotate(positionAngle) * positionRadius;
+		particles[freeIndex].position = position + vec2::one().rotate(positionAngle) * positionRadius;
 
 		//set velocity
 		float velocity = Random::rand_rangef(particleDescriptor->velocity.min, particleDescriptor->velocity.max);
 		float direction =  Random::rand_rangef(particleDescriptor->direction.min, particleDescriptor->direction.max) + rotation;
-		particles[currentParticlesNumber].velocity = vec2::one().rotate(direction) * velocity;
+		particles[freeIndex].velocity = vec2::one().rotate(direction) * velocity;
 
 		//set angle
-		particles[currentParticlesNumber].angle = Random::rand_rangef(particleDescriptor->angle.min, particleDescriptor->angle.max) + rotation;
+		particles[freeIndex].angle = Random::rand_rangef(particleDescriptor->angle.min, particleDescriptor->angle.max) + rotation;
 
 		//set scale
-		particles[currentParticlesNumber].scale = Random::rand_rangef(particleDescriptor->scale.min, particleDescriptor->scale.max);
+		particles[freeIndex].scale = Random::rand_rangef(particleDescriptor->scale.min, particleDescriptor->scale.max);
 
 		//set scale speed
-		particles[currentParticlesNumber].scaleSpeed = Random::rand_rangef(particleDescriptor->scaleSpeed.min, particleDescriptor->scaleSpeed.max);
+		particles[freeIndex].scaleSpeed = Random::rand_rangef(particleDescriptor->scaleSpeed.min, particleDescriptor->scaleSpeed.max);
 
 		//set frame
 		float frame = Random::rand_rangef(particleDescriptor->frame.min, particleDescriptor->frame.max);
-		particles[currentParticlesNumber].frame = uint32_t (float(Sprite(spriteId).frames) * frame);
+		particles[freeIndex].frame = uint32_t (float(Sprite(spriteId).frames) * frame);
 
 		//set frame rate
 		float frameRate = Random::rand_rangef(particleDescriptor->frameRate.min, particleDescriptor->frameRate.max);
-		particles[currentParticlesNumber].frameRate = frameRate;
+		particles[freeIndex].frameRate = frameRate;
 
-		currentParticlesNumber++;
+		//current particle number
+		if (freeIndex == currentParticlesNumber) {
+			currentParticlesNumber++;
+			if (currentParticlesNumber > EMITTER_MAX_PARTICLES)
+				currentParticlesNumber = EMITTER_MAX_PARTICLES;
+		}
 	}
 
 	//start emition
 	void ParticleEmitter::emit() {
 		if (emitted)
 			return;
-		particles.resize(particlesNumber);
-		currentParticlesNumber = 0;
 		emitted = true;
 		time = 0.0f;
 		addParticle();
@@ -61,19 +77,27 @@ namespace ASEngine {
 	void ParticleEmitter::update(float delta) {
 		//update time
 		time += delta;
-		//time pass lifetime
-		if (time > life) {
-			emitted = false;
-			return;
-		}
-		//ALOG("%f %f",time , float(currentParticlesNumber) * life / float(particlesNumber));
 		//add particle
-		while (emitted && time > float(currentParticlesNumber) * (life * (1.0f - explosiveness)) / float(particlesNumber) && currentParticlesNumber < particlesNumber) {
+		while (emitted && time > float(currentParticlesNumber) * (life * ( explosiveness)) / float(particlesNumber)) {
+			if (currentParticlesNumber >= particlesNumber && !repeat) {
+				emitted = false;
+				break;
+			}
 			addParticle();
 		}
 
 		//update particles params
 		for (int i = 0; i < currentParticlesNumber; i++)  {
+			//check life
+			if (particles[i].life < 0.0f)
+				continue;
+
+			//update life
+			particles[i].life -= delta;
+			//destroy particle
+			if (particles[i].life < 0.0f && i == currentParticlesNumber - 1)
+				currentParticlesNumber--;
+
 			//update position
 			particles[i].position = particles[i].position + particles[i].velocity * delta;
 			//update scale
@@ -92,11 +116,11 @@ namespace ASEngine {
 
 	//draw particles
 	void ParticleEmitter::draw(Graphics &graphics) {
-		//time pass lifetime
-		if (time > life)
-			return;
 		//particles  draw
 		for (int i = 0; i < currentParticlesNumber; i++) {
+			//check life
+			if (particles[i].life < 0.0f)
+				continue;
 			graphics.drawSprite(spriteId, uint32_t(particles[i].frame), particles[i].position, vec2::one() * particles[i].scale, particles[i].angle, Color::white);
 		}
 	}

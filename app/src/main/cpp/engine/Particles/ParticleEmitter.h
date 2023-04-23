@@ -14,6 +14,8 @@
 #include "../Renderer/Graphics.h"
 #include "../Math/Random.h"
 
+#define EMITTER_MAX_PARTICLES 10000
+
 namespace ASEngine {
 
 	class ParticleEmitter {
@@ -59,10 +61,9 @@ namespace ASEngine {
 		//destructors
 		~ParticleEmitter();
 
-
 	private:
 		//list of particles
-		std::vector<Particle> particles = {};
+		std::vector<Particle> particles{EMITTER_MAX_PARTICLES};
 		//current time for emitter
 		float time = 0.0f;
 		//is emitted

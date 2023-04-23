@@ -5,7 +5,7 @@
     "frames": 2,
     "offset": {
       "x": 40.0,
-      "y": 40.0
+      "y": 38.0
     }
   },
   {
@@ -14,7 +14,7 @@
     "frames": 2,
     "offset": {
       "x": 40.0,
-      "y": 40.0
+      "y": 38.0
     }
   },
   {
@@ -33,6 +33,15 @@
     "offset": {
       "x": 24.0,
       "y": 24.0
+    }
+  },
+  {
+    "name": "spr_sumo_smoke_particle",
+    "image": "sumo/sumo_smoke_particle.png",
+    "frames": 5,
+    "offset": {
+      "x": 16.0,
+      "y": 16.0
     }
   },
   {

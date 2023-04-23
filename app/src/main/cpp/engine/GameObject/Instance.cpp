@@ -10,6 +10,8 @@ namespace ASEngine {
 
 	std::vector<GameObject*> Instance::destroyQueue = {};
 
+	float Instance::timeScale = 1.0f;
+
 	GameObject *Instance::create(GameObjectID name) {
 		GameObject* instance = gameObjects[name]();
 		instance->objectId = name;
@@ -37,7 +39,7 @@ namespace ASEngine {
 				continue;
 			//update
 			instance->mask.position = instance->position;
-			instance->onUpdate(delta);
+			instance->onUpdate(delta * timeScale);
 		}
 		cleanDestroyQueue();
 	}

@@ -17,7 +17,7 @@ namespace ASEngine {
 		float scale = 1.0f;
 		float scaleSpeed = 0.0f;
 		Color modulate = Color::black;
-		float life = 1.0f;
+		float life = 0.0f;
 		float frame = 0.0f;
 		float frameRate = 0.0f;
 	};

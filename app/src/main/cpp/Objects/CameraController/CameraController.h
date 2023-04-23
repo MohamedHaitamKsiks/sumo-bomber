@@ -19,6 +19,9 @@ class CameraController : public GameObject{
 	//time
 	float time = 0.0f;
 
+	//slow motion timer
+	float slowMotionTimer = 0.0f;
+
 	void onCreate();
 
 	void onUpdate(float delta);
@@ -28,8 +31,10 @@ class CameraController : public GameObject{
 	void onInputEvent(InputEvent event);
 
 public:
+	//slow motion
+	void slowMotion(float _scale = 0.2, float _dur = 1.0f);
 	//shake
-	void shake(float _mag = 4.0f, float _dur = 0.3f, float _freq = 100.0f);
+	void shake(float _mag = 4.0f, float _dur = 0.3f, float _freq = 20.0f);
 
 
 };
