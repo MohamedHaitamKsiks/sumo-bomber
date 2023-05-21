@@ -49,7 +49,8 @@ namespace ASEngine {
     private:
         //game objects
         static std::unordered_map<std::string, GameObject* (*)()> gameObjects;
-
+		//draw layers
+		static std::map<LayerID , std::vector<GameObject*>> layers;
         //queue to clean at the end of the frame
         static std::vector<GameObject*> destroyQueue;
         //clean destroy queue

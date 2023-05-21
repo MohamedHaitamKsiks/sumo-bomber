@@ -13,13 +13,33 @@
 #include "Terrain/Terrain.h"
 #include "CameraController/CameraController.h"
 #include "Ball/Ball.h"
+#include "Ball/BallSolo/BallSolo.h"
+#include "Ball/BallVs/BallVs.h"
+#include "UI/Button/Button.h"
+#include "UI/TitleScreen/TitleScreen.h"
+#include "UI/Button/ButtonParticle.h"
+#include "UI/TransitionManager/TransitionManager.h"
+#include "UI/SplashScreen/SplashScreen.h"
+#include "System/ScoreManager/ScoreManager.h"
+#include "UI/HudVs/HudVs.h"
 
 //add every game object here
 static void loadGameObjects() {
-	ASEngine::Instance::addGameObject<Sumo>("Sumo");
+	ASEngine::Instance::addGameObject<Sumo>("SumoRed");
+	ASEngine::Instance::addGameObject<Sumo>("SumoBlue");
 	ASEngine::Instance::addGameObject<Terrain>("Terrain");
 	ASEngine::Instance::addGameObject<CameraController>("CameraController");
-	ASEngine::Instance::addGameObject<Ball>("Ball");
+	//ASEngine::Instance::addGameObject<Ball>("Ball");
+	ASEngine::Instance::addGameObject<BallVs>("BallVs");
+	ASEngine::Instance::addGameObject<BallSolo>("BallSolo");
+	ASEngine::Instance::addGameObject<Button>("Button");
+	ASEngine::Instance::addGameObject<ButtonParticle>("ButtonParticle");
+	ASEngine::Instance::addGameObject<TitleScreen>("TitleScreen");
+	ASEngine::Instance::addGameObject<TransitionManager>("TransitionManager");
+	ASEngine::Instance::addGameObject<SplashScreen>("SplashScreen");
+	ASEngine::Instance::addGameObject<ScoreManager>("ScoreManager");
+	ASEngine::Instance::addGameObject<HudVs>("HudVs");
+
 }
 
 #endif //ANDROIDSIMPLEENGINE_LOADGAMEOBJECT_H

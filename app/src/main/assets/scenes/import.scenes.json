@@ -1,6 +1,15 @@
 [
   {
+    "name": "sc_start",
+    "file": "start.scene.json"
+  },
+  {
+    "name": "sc_title",
+    "file": "title.scene.json"
+  },
+  {
     "name": "sc_main",
     "file": "main.scene.json"
   }
+
 ]

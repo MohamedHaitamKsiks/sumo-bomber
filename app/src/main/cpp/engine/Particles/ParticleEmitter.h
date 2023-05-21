@@ -70,6 +70,8 @@ namespace ASEngine {
 		bool emitted = false;
 		//current particle number
 		uint32_t currentParticlesNumber = 0;
+		//current number of alive particles
+		uint32_t currentActiveParticles = 0;
 		//add particle
 		void addParticle();
 	};

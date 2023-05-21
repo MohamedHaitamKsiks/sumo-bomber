@@ -74,4 +74,16 @@ namespace ASEngine {
 		}
 		return quad;
 	}
+
+	Quad Quad::create(vec2 size, mat3 &transform, float zIndex, Color _modulate, Rectangle part) {
+		Quad quad{};
+		//fill vertex data
+		for(int i = 0; i < 4; i++) {
+			quad.vertexData[i].position =  transform * (size * quad.vertexData[i].position);
+			quad.vertexData[i].uv = (part.position + quad.vertexData[i].uv * part.size);
+			quad.vertexData[i].zIndex = zIndex;
+			quad.vertexData[i].modulate = _modulate;
+		}
+		return quad;
+	}
 } // ASEngine

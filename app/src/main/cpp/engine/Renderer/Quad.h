@@ -14,6 +14,8 @@
 
 #include "Vertex.h"
 
+#include "../Shape/Rectangle.h"
+
 namespace ASEngine {
 
 	struct Quad {
@@ -34,6 +36,7 @@ namespace ASEngine {
 		static Quad create(vec2 size, mat3 &transform, float zIndex, Color _modulate, int hframe, int hframes, int vframe, int vframes);
 		static Quad create(vec2 size, vec2 translate, float zIndex, Color _modulate);
 		static Quad create(vec2 size, vec2 translate, float zIndex, Color _modulate, int hframe, int hframes, int vframe, int vframes);
+		static Quad create(vec2 size, mat3 &transform, float zIndex, Color _modulate, Rectangle part);
 	};
 
 } // ASEngine

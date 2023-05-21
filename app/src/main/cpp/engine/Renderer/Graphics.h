@@ -16,6 +16,7 @@
 #include "Camera.h"
 #include "Color.h"
 #include "Screen.h"
+#include "../Shape/Rectangle.h"
 
 namespace ASEngine {
 
@@ -34,14 +35,18 @@ namespace ASEngine {
 		//draw functions
 		//draw rectangle
 		void drawRectangle(vec2 position, vec2 size, Color modulate);
+		//draw rectangle colors
+		void drawRectangle(vec2 position, vec2 size, const std::vector<Color>& modulates);
 		//draw texture
 		void drawTexture(Texture texture, vec2 position, vec2 scale, float rotation, Color modulate = Color::white);
+		void drawTexturePart(Texture texture, Rectangle part, vec2 position, vec2 scale, float rotation, Color modulate = Color::white);
 		//draw sprite ext
 		void drawSprite(const SpriteID& spriteId, int frame,vec2 position, vec2 scale, float rotation, Color modulate = Color::white);
 		//draw sprite
 		void drawSprite(const SpriteID& spriteId, int frame,vec2 position, Color modulate = Color::white);
 		//draw text
 		void drawText(const std::string& text, vec2 position, const FontID& fontId, Color modulate = Color::white);
+		void drawText(const std::string& text, vec2 position, const FontID& fontId, int outline, Color modulate = Color::white);
 		//update graphics
 		void update();
 	private:

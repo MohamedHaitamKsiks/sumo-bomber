@@ -46,7 +46,8 @@ namespace ASEngine {
 	void Application::onInputEvent(InputEvent &inputEvent) {
 		//process event for each instance
 		for (auto instance: Instance::instances) {
-			instance->onInputEvent(inputEvent);
+			if (instance->enable)
+				instance->onInputEvent(inputEvent);
 		}
 	}
 
@@ -65,7 +66,7 @@ namespace ASEngine {
 		ss << int(1.0f / delta) << " FPS\n";
 		//ss << Screen::getWindowWidth() << ", : . " << Screen::getWindowHeight();
 		//draw fps
-		for (int r = 1; r <= 2; r++) {
+		/*for (int r = 1; r <= 2; r++) {
 			if (r > 0) {
 				graphics.drawText(ss.str(), vec2{16.0f + float(r-1), 16.0f + float(r-1)}, "ft_pixel", Color::black);
 				graphics.drawText(ss.str(), vec2{16.0f - float(r-1), 16.0f - float(r-1)}, "ft_pixel", Color::black);
@@ -77,10 +78,11 @@ namespace ASEngine {
 			graphics.drawText(ss.str(), vec2{16.0f - float(r), 16.0f}, "ft_pixel", Color::black);
 			graphics.drawText(ss.str(), vec2{16.0f, 16.0f + float(r)}, "ft_pixel", Color::black);
 			graphics.drawText(ss.str(), vec2{16.0f, 16.0f - float(r)}, "ft_pixel", Color::black);
-		}
 
+		 }
 
 		graphics.drawText(ss.str(), vec2{16.0f, 16.0f}, "ft_pixel");
+		 */
 		//upadte graphics
 		graphics.update();
 		//flush context
@@ -110,9 +112,12 @@ namespace ASEngine {
 		//pool every input on queue
 		for(size_t i = 0; i < app->motionEventsCount; ++i) {
 			//pool event
-			InputEvent event = InputEvent::poolEvent(i);
-			//process input
-			onInputEvent(event);
+			GameActivityMotionEvent motionEvent = app->motionEvents[i];
+			for (int ptrIndex = 0; ptrIndex < motionEvent.pointerCount; ptrIndex++) {
+				InputEvent event = InputEvent::poolEvent(&motionEvent, ptrIndex);
+				//process input
+				onInputEvent(event);
+			}
 		}
 	}
 

@@ -21,6 +21,7 @@ class CameraController : public GameObject{
 
 	//slow motion timer
 	float slowMotionTimer = 0.0f;
+	bool slowMotionEnabled = false;
 
 	void onCreate();
 

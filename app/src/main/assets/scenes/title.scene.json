@@ -1,0 +1,18 @@
+{
+  "instances": [
+    {
+      "name": "CameraController",
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "name": "TitleScreen",
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    }
+  ]
+}

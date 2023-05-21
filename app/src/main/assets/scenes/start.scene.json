@@ -1,0 +1,32 @@
+{
+  "instances": [
+    {
+      "name": "ScoreManager",
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "name": "CameraController",
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "name": "TransitionManager",
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "name": "SplashScreen",
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    }
+  ]
+}

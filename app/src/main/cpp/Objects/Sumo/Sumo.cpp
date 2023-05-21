@@ -11,6 +11,7 @@ ParticleDescriptor Sumo::walkDustDescriptor {};
 ParticleDescriptor Sumo::smokeDescriptor {};
 
 void Sumo::onCreate() {
+	layer = 1;
 	//dust particles
 	//descriptor
 	walkDustDescriptor.angle = {-M_PI / 8.0f, M_PI / 8.0f};
@@ -43,16 +44,42 @@ void Sumo::onCreate() {
 	//collision mask
 	mask.size = vec2{32.0f, 32.0f};
 
+	//sprite color
+	if (objectId == "SumoRed")
+		sumoSpriteId = "spr_sumo_red";
+	else
+		sumoSpriteId = "spr_sumo_blue";
+
+	//direction
+	if (objectId == "SumoRed") {
+		walkDirection = vec2{0.0f, 1.0f};
+		rotation = M_PI;
+	}
+	else {
+		walkDirection = vec2{0.0f, -1.0f};
+	}
+
+
 	//play field area
-	playFieldArea.position = vec2{0.0f, Screen::getCenter().y};
+	if (objectId == "SumoRed")
+		playFieldArea.position = vec2{0.0f, 0.0f};
+	else
+		playFieldArea.position = vec2{0.0f, Screen::getCenter().y};
+	//size
 	playFieldArea.size = vec2{Screen::getSize().x, Screen::getCenter().y};
 
 	//control araes
 	//joystick area
 	joystickArea.position = playFieldArea.position;
+	//player red
+	if (objectId == "SumoRed")
+		joystickArea.position.x = playFieldArea.position.x + playFieldArea.size.x * (1.0f - joystickButtonRation);
+	else
+		joystickArea.position.x = playFieldArea.position.x;
+
 	joystickArea.size = vec2{
-		playFieldArea.size.x * joystickButtonRation,
-		playFieldArea.size.y
+			playFieldArea.size.x * joystickButtonRation,
+			playFieldArea.size.y
 	};
 
 	//button area
@@ -60,13 +87,25 @@ void Sumo::onCreate() {
 		playFieldArea.position.x + joystickArea.size.x,
 		playFieldArea.position.y
 	};
+	//player red
+	if (objectId == "SumoRed")
+		buttonArea.position = vec2{
+				playFieldArea.position.x,
+				playFieldArea.position.y
+		};
+	else
+		buttonArea.position = vec2{
+				playFieldArea.position.x + joystickArea.size.x,
+				playFieldArea.position.y
+		};
+
 	buttonArea.size = vec2{
 		playFieldArea.size.x * (1.0f - joystickButtonRation),
 		playFieldArea.size.y
 	};
 
 	//get ball object
-	ball = (Ball*) Instance::find("Ball");
+	//ball = (Ball*) Instance::find("Ball");
 	//get camera
 	camera = (CameraController*) Instance::find("CameraController");
 }
@@ -108,12 +147,14 @@ void Sumo::onUpdate(float delta) {
 	}
 	//catch
 	else if (state == SUMO_CATCH) {
-		arrowScale = (arrowScale * 1.3 + 1.0f * 0.7) / 2.0f;
-		pitchAngle += pitchAngleSpeed * delta;
+		arrowScale = Interpolate::linear(arrowScale, 1.0f, 25.0f * delta);;
+		//pitchAngle += pitchAngleSpeed * delta;
+		if (direction.length() > 0.0f)
+			pitchAngle = -direction.angle();
 		rotation = pitchAngle + M_PI;
 		//grab timer
 		grabTimer -= delta;
-		if (grabTimer < 0.0f)
+		if (grabTimer < 0.0f || ball->state == BALL_PREPARE_EXPLOSION)
 			overheat();
 		//smokeEmitter.particlesNumber = int(20.0f * (1.0f - grabTimer / GRAB_DURATION));
 
@@ -147,18 +188,21 @@ void Sumo::onUpdate(float delta) {
 
 	//collision with ball
 	if (state != SUMO_CATCH) {
-		bool collision = collideWithInstance(ball, velocity * delta);
+		Ball* collisionBall = (Ball*) collideWithObject("Ball", velocity * delta);
 		//ball just entered
-		if (collision && !ballEntered) {
+		if (collisionBall && !ballEntered) {
+			ball = collisionBall;
 			onBallEntered();
 			ballEntered = true;
 		}
-			//ball just existed
-		else if (!collision){
+		//ball just existed
+		else if (!collisionBall){
 			ballEntered = false;
 		}
 	}
 
+	//grab rotation animation
+	grabRotation = Interpolate::linear(grabRotation, 0.0f, 10.0f * delta);
 
 	//add velocity
 	position = position + velocity * delta;
@@ -259,6 +303,7 @@ void Sumo::grab() {
 	//rotate
 	pitchAngle = -ball->velocity.angle();
 	rotation = pitchAngle + M_PI;
+	grabRotation = - M_PI;
 	//grab ball
 	ball->grab();
 	//shake camera
@@ -272,12 +317,17 @@ void Sumo::pitch() {
 	//pitch direction
 	vec2 pitchDirection = vec2{1.0f, 0.0f}.rotate(pitchAngle);
 	walkDirection = pitchDirection;
+	grabRotation = 2.0f * M_PI;
 	vec2 ballVelocity = pitchDirection * 250.0f;
 	ball->pitch(position, ballVelocity);
 }
 
 //on ball entered
 void Sumo::onBallEntered() {
+	//check ball state
+	if (ball->state != BALL_DEFAULT)
+		return;
+
 	if (state == SUMO_IDLE) {
 		grab();
 	}
@@ -290,7 +340,7 @@ void Sumo::onBallEntered() {
 
 void Sumo::onDraw(Graphics &graphics) {
 	//draw sumo
-	drawSumo(graphics, position, scale, rotation);
+	drawSumo(graphics, position, scale, rotation + grabRotation);
 	//draw joystick
 	drawJoystick(graphics);
 }
@@ -301,12 +351,12 @@ void Sumo::drawSumo(Graphics& graphics, vec2 position, vec2 scale, float rotatio
 	vec2 heatDirection = vec2{1.0f, 0.0f}.rotate(2.0f * M_PI * time);
 	vec2 heatOffset = heatDirection * heatScale * sin(10.0f * 2.0f * M_PI * time );
 	//draw
-	graphics.drawSprite("spr_sumo_blue", frame, position + heatOffset + vec2{0.0f, 8.0f}, scale, rotation, Color::black);
+	graphics.drawSprite(sumoSpriteId, frame, position + heatOffset + vec2{0.0f, 8.0f}, scale, rotation, Color::black);
 	//draw dust
 	walkDustEmitter.draw(graphics);
 	//draw smoke
 	smokeEmitter.draw(graphics);
-	graphics.drawSprite("spr_sumo_blue", frame, position + heatOffset, scale, rotation, modulate);
+	graphics.drawSprite(sumoSpriteId, frame, position + heatOffset, scale, rotation, modulate);
 	//draw particle stun
 	if (state == SUMO_STUN)
 		graphics.drawSprite("spr_sumo_stun_particles", time * 8.0f, position, scale, rotation);
@@ -323,7 +373,7 @@ void Sumo::drawJoystick(Graphics &graphics) {
 	if (!pointerDown)
 		return;
 	//draw joystick for ui
-	Color joystickColor = Color{1.0f, 1.0f, 1.0f, 0.4};
+	Color joystickColor = Color{1.0f, 1.0f, 1.0f, 0.6f};
 	//draw base
 	graphics.drawSprite("spr_joystick", 0, pointerDownPosition, joystickColor);
 	//draw stick

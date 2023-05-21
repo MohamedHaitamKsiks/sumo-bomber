@@ -63,9 +63,54 @@
     }
   },
   {
+    "name": "spr_ball_light",
+    "image": "ball/ball_light.png",
+    "frames": 7,
+    "offset": {
+      "x": 16.0,
+      "y": 16.0
+    }
+  },
+  {
+    "name": "spr_ball_explosion",
+    "image": "ball/ball_explosion.png",
+    "frames": 10,
+    "offset": {
+      "x": 64.0,
+      "y": 64.0
+    }
+  },
+  {
     "name": "spr_floor",
     "image": "floor/floor.png",
     "frames": 5,
+    "offset": {
+      "x": 0.0,
+      "y": 0.0
+    }
+  },
+  {
+    "name": "spr_wood_floor",
+    "image": "floor/wood_floor.png",
+    "frames": 2,
+    "offset": {
+      "x": 0.0,
+      "y": 0.0
+    }
+  },
+  {
+    "name": "spr_line_floor",
+    "image": "floor/floor_line.png",
+    "frames": 1,
+    "offset": {
+      "x": 0.0,
+      "y": 4.0
+    }
+  },
+  {
+    "name": "spr_splash_screen",
+    "image": "ui/splash_screen.png",
+    "frames": 1,
     "offset": {
       "x": 0.0,
       "y": 0.0
@@ -78,6 +123,69 @@
     "offset": {
       "x": 32.0,
       "y": 32.0
+    }
+  },
+  {
+    "name": "spr_buttons",
+    "image": "ui/game_title_buttons.png",
+    "frames": 5,
+    "offset": {
+      "x": 62.0,
+      "y": 20.0
+    }
+  },
+  {
+    "name": "spr_button_clicked",
+    "image": "ui/game_title_buttons_pressed.png",
+    "frames": 1,
+    "offset": {
+      "x": 62.0,
+      "y": 20.0
+    }
+  },
+  {
+    "name": "spr_button_particles",
+    "image": "ui/game_title_buttons_particles.png",
+    "frames": 2,
+    "offset": {
+      "x": 31.0,
+      "y": 20.0
+    }
+  },
+  {
+    "name": "spr_game_title",
+    "image": "ui/game_title.png",
+    "frames": 1,
+    "offset": {
+      "x": 90.0,
+      "y": 80.0
+    }
+  },
+  {
+    "name": "spr_score_support",
+    "image": "ui/score_support.png",
+    "frames": 1,
+    "offset": {
+      "x": 0.0,
+      "y": 0.0
+    }
+  },
+  {
+    "name": "spr_bomb_fuse",
+    "image": "ui/bomb_fuse.png",
+    "frames": 1,
+    "offset": {
+      "x": 0.0,
+      "y": 0.0
+    }
+  },
+  {
+    "name": "spr_fuse_particles",
+    "image": "ui/fuse_particles.png",
+    "frames": 4,
+    "offset": {
+      "x": 24.0,
+      "y": 16.0
     }
   }
 ]

@@ -61,6 +61,18 @@ add_library( # Sets the name of the library.
         Objects/Terrain/Terrain.cpp
         Objects/CameraController/CameraController.cpp
         Objects/Ball/Ball.cpp
+        Objects/Ball/BallSolo/BallSolo.cpp
+        Objects/Ball/BallVs/BallVs.cpp
+        #ui
+        Objects/UI/Button/Button.cpp
+        Objects/UI/Button/ButtonParticle.cpp
+        Objects/UI/TitleScreen/TitleScreen.cpp
+        Objects/UI/TransitionManager/TransitionManager.cpp
+        Objects/UI/SplashScreen/SplashScreen.cpp
+        Objects/UI/HudVs/HudVs.cpp
+        #score
+        Objects/System/ScoreManager/ScoreManager.cpp
+
         # Provides a relative path to your source file(s).
         main.cpp
 

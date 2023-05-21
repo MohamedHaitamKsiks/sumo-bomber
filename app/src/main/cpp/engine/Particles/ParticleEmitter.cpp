@@ -59,6 +59,7 @@ namespace ASEngine {
 		//current particle number
 		if (freeIndex == currentParticlesNumber) {
 			currentParticlesNumber++;
+			currentActiveParticles++;
 			if (currentParticlesNumber > EMITTER_MAX_PARTICLES)
 				currentParticlesNumber = EMITTER_MAX_PARTICLES;
 		}
@@ -78,8 +79,8 @@ namespace ASEngine {
 		//update time
 		time += delta;
 		//add particle
-		while (emitted && time > float(currentParticlesNumber) * (life * ( explosiveness)) / float(particlesNumber)) {
-			if (currentParticlesNumber >= particlesNumber && !repeat) {
+		while (emitted && time > float(currentActiveParticles) * (life * ( explosiveness)) / float(particlesNumber)) {
+			if (currentActiveParticles >= particlesNumber && !repeat) {
 				emitted = false;
 				break;
 			}
@@ -97,6 +98,9 @@ namespace ASEngine {
 			//destroy particle
 			if (particles[i].life < 0.0f && i == currentParticlesNumber - 1)
 				currentParticlesNumber--;
+			//remove 1 from current active particles
+			if (particles[i].life < 0.0f)
+				currentActiveParticles--;
 
 			//update position
 			particles[i].position = particles[i].position + particles[i].velocity * delta;
@@ -121,7 +125,7 @@ namespace ASEngine {
 			//check life
 			if (particles[i].life < 0.0f)
 				continue;
-			graphics.drawSprite(spriteId, uint32_t(particles[i].frame), particles[i].position, vec2::one() * particles[i].scale, particles[i].angle, Color::white);
+			graphics.drawSprite(spriteId, uint32_t(particles[i].frame), particles[i].position, vec2::one() * particles[i].scale, particles[i].angle + M_PI  -particles[i].velocity.angle(), Color::white);
 		}
 	}
 

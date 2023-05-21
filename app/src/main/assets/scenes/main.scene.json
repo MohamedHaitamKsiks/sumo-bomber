@@ -8,6 +8,13 @@
       }
     },
     {
+      "name": "HudVs",
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
       "name": "Terrain",
       "position": {
         "x": -64,
@@ -15,17 +22,24 @@
       }
     },
     {
-      "name": "Ball",
+      "name": "BallVs",
       "position": {
         "x": 90,
         "y": 200
       }
     },
     {
-      "name": "Sumo",
+      "name": "SumoBlue",
       "position": {
         "x": 90,
-        "y": 280
+        "y": 240
+      }
+    },
+    {
+      "name": "SumoRed",
+      "position": {
+        "x": 90,
+        "y": 80
       }
     }
   ]

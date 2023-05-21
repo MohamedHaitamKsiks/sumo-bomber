@@ -27,11 +27,11 @@ namespace ASEngine {
 		InputEventType type;
 		//pointer data
 		vec2 pointerPosition;
-		int pointerIndex;
+		uint32_t pointerIndex;
 		//init input
 		static void init(android_app* _app);
 		//pool event from queue
-		static InputEvent poolEvent(int eventIndex);
+		static InputEvent poolEvent(const GameActivityMotionEvent* motionEvent, uint32_t ptrIndex);
 	private:
 		//android app
 		static android_app* app;

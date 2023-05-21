@@ -20,9 +20,12 @@ enum SumoState {
 };
 
 class Sumo: public GameObject {
-
+public:
 	//sumo states
 	SumoState state = SUMO_IDLE;
+	//sprite color
+	SpriteID sumoSpriteId;
+
 	//velocity
 	vec2 direction{0.0f, 0.0f};
 	vec2 velocity{0.0f, 0.0f};
@@ -66,6 +69,8 @@ class Sumo: public GameObject {
 	float arrowScale = 0.0f;
 	const float GRAB_DURATION = 3.0f;
 	float grabTimer = GRAB_DURATION;
+	//sprite rotation for feedback purpose
+	float grabRotation = 0.0f;
 	//heat
 	const float GRAB_HEAT_SCALE = 1.5f;
 	const float OVERHEAT_STUN_DURATION = 1.0f;

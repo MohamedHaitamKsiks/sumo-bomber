@@ -6,7 +6,7 @@
 
 
 void CameraController::onCreate() {
-
+	persistant = true;
 }
 
 void CameraController::onUpdate(float delta) {
@@ -17,8 +17,10 @@ void CameraController::onUpdate(float delta) {
 
 	//slow motion timer
 	slowMotionTimer -= delta;
-	if (slowMotionTimer <= 0.0f) {
+
+	if (slowMotionEnabled && slowMotionTimer < 0.0f) {
 		Instance::timeScale = 1.0f;
+		slowMotionEnabled = false;
 	}
 }
 
@@ -43,5 +45,6 @@ void CameraController::onInputEvent(InputEvent event) {
 void CameraController::slowMotion(float _scale, float _dur) {
 	Instance::timeScale = _scale;
 	slowMotionTimer = _dur * _scale;
+	slowMotionEnabled = true;
 }
 

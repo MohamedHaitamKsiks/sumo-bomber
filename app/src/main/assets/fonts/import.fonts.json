@@ -6,5 +6,13 @@
     "separation": 4,
     "lineSeparation": 4,
     "spaceSize": 8
+  },
+  {
+    "name": "ft_pixel_large",
+    "size": 48,
+    "font": "nuku1.ttf",
+    "separation": 4,
+    "lineSeparation": 4,
+    "spaceSize": 8
   }
 ]

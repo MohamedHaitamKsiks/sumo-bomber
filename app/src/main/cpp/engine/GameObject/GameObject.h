@@ -17,6 +17,8 @@ namespace ASEngine {
 
     typedef std::string GameObjectID;
 
+    typedef uint32_t LayerID;
+
     class GameObject {
     public :
         //game object id
@@ -26,9 +28,11 @@ namespace ASEngine {
         vec2 position = vec2::zero();
         vec2 scale = vec2::one();
         float rotation = 0.0f;
-        float z_index = 0.0f;
+        LayerID layer = 0;
         bool visible = true;
         bool enable = true;
+		//persistant between scenes
+		bool persistant = false;
 
 
         //mask
