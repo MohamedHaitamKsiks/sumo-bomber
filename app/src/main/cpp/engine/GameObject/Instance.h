@@ -23,6 +23,7 @@ namespace ASEngine {
 		static GameObject* find(const GameObjectID& name);
 		//time scale
 		static float timeScale;
+		static bool paused;
 
         //destroy instance
         static void destroy(GameObject* instance);

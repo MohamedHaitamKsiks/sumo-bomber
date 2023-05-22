@@ -33,7 +33,7 @@ namespace ASEngine {
         bool enable = true;
 		//persistant between scenes
 		bool persistant = false;
-
+        bool pausable = true;
 
         //mask
         Rectangle mask{};

@@ -154,10 +154,27 @@ void Ball::onDraw(Graphics &graphics) {
 	explosionEmitter.draw(graphics);
 
 }
+void Ball::togglePause() {
+	if (gameState == GAME_PLAYING) {
+		gameState = GAME_PAUSED;
+		Instance::paused = true;
+		// Perform actions to pause the game (e.g., stop animations, pause physics, etc.)
+		// Show the pause menu UI or perform other relevant tasks
+	} else if (gameState == GAME_PAUSED) {
+		gameState = GAME_PLAYING;
+		Instance::paused = false;
+		// Perform actions to resume the game (e.g., resume animations, resume physics, etc.)
+		// Hide the pause menu UI or perform other relevant tasks
+	}
+}
 
 void Ball::onInputEvent(InputEvent event) {
-
+	if (event.type == InputEventType::INPUT_EVENT_KEY_DOWN && event.key == AKEYCODE_BACK ){
+		togglePause();
+        ALOG("clicked on return %i", event.key );
+	}
 }
+
 
 //bounce vall
 void Ball::bounce() {

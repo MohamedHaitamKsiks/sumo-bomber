@@ -14,6 +14,8 @@ namespace ASEngine {
 
 	float Instance::timeScale = 1.0f;
 
+	bool Instance::paused = false;
+
 	GameObject *Instance::create(GameObjectID name) {
 		GameObject* instance = gameObjects[name]();
 		instance->objectId = name;
@@ -45,13 +47,17 @@ namespace ASEngine {
 		//update instance
 		for (auto instance: instances) {
 			//check if enable
-			if (!instance->enable)
-				continue;
+			if (instance->pausable){
+			if (!instance->enable || paused){
+                instance->mask.position = instance->position;
+                layers[instance->layer].push_back(instance);
+				continue;}
 			//update
 			instance->mask.position = instance->position;
 			instance->onUpdate(delta * Instance::timeScale);
-			//add to corresponding layer
 			layers[instance->layer].push_back(instance);
+		}//add to corresponding layer
+
 		}
 		cleanDestroyQueue();
 	}
