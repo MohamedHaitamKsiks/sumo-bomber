@@ -22,6 +22,8 @@
 #include "UI/SplashScreen/SplashScreen.h"
 #include "System/ScoreManager/ScoreManager.h"
 #include "UI/HudVs/HudVs.h"
+#include "System/SoloManager/SoloManager.h"
+#include "UI/HudSolo/HudSolo.h"
 #include "UI/Pause/PauseMenu.h"
 
 //add every game object here
@@ -40,6 +42,8 @@ static void loadGameObjects() {
 	ASEngine::Instance::addGameObject<SplashScreen>("SplashScreen");
 	ASEngine::Instance::addGameObject<ScoreManager>("ScoreManager");
 	ASEngine::Instance::addGameObject<HudVs>("HudVs");
+	ASEngine::Instance::addGameObject<HudSolo>("HudSolo");
+	ASEngine::Instance::addGameObject<SoloManager>("SoloManager");
 
 }
 
