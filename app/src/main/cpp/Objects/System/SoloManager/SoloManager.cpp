@@ -6,6 +6,9 @@
 #include "../../Ball/BallSolo/BallSolo.h"
 
 void SoloManager::onCreate() {
+	//score
+	scoreManager = (ScoreManager*) Instance::find("ScoreManager");
+	scoreManager->gameModeSolo.score = 0;
 	//areas
 	//red
 	redArea.position = vec2::zero();
@@ -22,7 +25,7 @@ void SoloManager::onUpdate(float delta) {
 	time += delta;
 	//timer to spawn balls
 	spawnTimer -= delta;
-	if (spawnTimer < 0.0f) {
+	if (spawnTimer < 0.0f && state == SOLO_GAME_PLAYING) {
 		spawnBall();
 		spawnTimer = SPAWN_DURATION * Interpolate::linear(1.0f, 0.66f, time / 30.0f);
 	}
@@ -105,4 +108,15 @@ void SoloManager::spawnBall() {
 	ball->position = ballPosition;
 	ball->soloManager = this;
 
+}
+
+void SoloManager::lose() {
+	if (state != SOLO_GAME_PLAYING)
+		return;
+	state = SOLO_GAME_OVER;
+	//show game over
+	HudSolo* hudSolo = (HudSolo*) Instance::find("HudSolo");
+	hudSolo->showGameOver();
+	/*TransitionManager* transitionManager = (TransitionManager*) Instance::find("TransitionManager");
+	transitionManager->changeSceneTo("TransitionManager");*/
 }

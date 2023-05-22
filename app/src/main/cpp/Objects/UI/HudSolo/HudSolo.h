@@ -7,6 +7,7 @@
 
 #include "asengine.h"
 #include "../../System/ScoreManager/ScoreManager.h"
+#include "../Button/Button.h"
 
 using namespace ASEngine;
 
@@ -19,8 +20,16 @@ public:
 	void showGameOver();
 
 private:
+	//game over visibility
+	bool isGameOverVisible = false;
 	//score manager
 	ScoreManager* scoreManager;
+
+	//buttons list
+	std::vector<ButtonType> types = {
+			BUTTON_RETRY,
+			BUTTON_MAINSCR
+	};
 
 	float scoreOffset = 0.0f;
 
