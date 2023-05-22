@@ -12,6 +12,7 @@ using namespace ASEngine;
 #include "../CameraController/CameraController.h"
 #include "../UI/TransitionManager/TransitionManager.h"
 #include "../System/ScoreManager/ScoreManager.h"
+#include "InputEvent/InputEvent.h"
 
 enum BallState {
 	BALL_FALL,
@@ -20,8 +21,16 @@ enum BallState {
 	BALL_EXPLOSION
 };
 
+enum GameState {
+	GAME_PLAYING,
+	GAME_PAUSED
+};
+
+
 class Ball : public GameObject{
 public:
+	//pause
+	GameState gameState = GAME_PLAYING;
 	//explosion
 	BallState state = BALL_DEFAULT;
 	//physics
@@ -106,6 +115,8 @@ protected:
 	void onDraw(Graphics& graphics);
 
 	void onInputEvent(InputEvent event);
+
+	void togglePause();
 
 
 };

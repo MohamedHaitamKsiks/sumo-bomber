@@ -96,6 +96,7 @@ void android_main(struct android_app *pApp) {
 
             //clear
             android_app_clear_motion_events(pApp);
+            android_app_clear_key_down_events(pApp);
 
             //update app
 			application->update(delta);

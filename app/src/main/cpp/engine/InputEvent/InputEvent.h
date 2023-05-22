@@ -8,6 +8,8 @@
 #include <vector>
 #include "../Math/vec2.h"
 #include "../Renderer/Screen.h"
+#include <android/keycodes.h>
+
 
 #include "../log.h"
 
@@ -18,7 +20,9 @@ namespace ASEngine {
 	enum InputEventType {
 		INPUT_EVENT_POINTER_DOWN,
 		INPUT_EVENT_POINTER_UP,
-		INPUT_EVENT_POINTER_MOVE
+		INPUT_EVENT_POINTER_MOVE,
+		INPUT_EVENT_KEY_DOWN,
+		INPUT_EVENT_KEY_UP
 	};
 
 	class InputEvent {
@@ -28,10 +32,14 @@ namespace ASEngine {
 		//pointer data
 		vec2 pointerPosition;
 		uint32_t pointerIndex;
+		//key
+		int32_t key; // New member to store key code
 		//init input
 		static void init(android_app* _app);
 		//pool event from queue
 		static InputEvent poolEvent(const GameActivityMotionEvent* motionEvent, uint32_t ptrIndex);
+		static InputEvent poolKeyEvent(const GameActivityKeyEvent* keyEvent); // New function to pool key events
+
 	private:
 		//android app
 		static android_app* app;

@@ -119,6 +119,15 @@ namespace ASEngine {
 				onInputEvent(event);
 			}
 		}
+		// Process key events
+		for (size_t i = 0; i < app->keyDownEventsCount; ++i) {
+			// Pool event
+			GameActivityKeyEvent keyEvent = app->keyDownEvents[i];
+			InputEvent event= InputEvent::poolKeyEvent(&keyEvent);
+
+			// Process input
+			onInputEvent(event);
+		}
 	}
 
 	void Application::loadProjectSettings() {
