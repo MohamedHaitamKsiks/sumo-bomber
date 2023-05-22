@@ -24,6 +24,15 @@ namespace ASEngine {
 		//time scale
 		static float timeScale;
 
+		//pause handling
+		static bool paused;
+
+		enum GameState {
+			GAME_PLAYING,
+			GAME_PAUSED
+		};
+		static GameState gameState;
+		static void togglePause();
         //destroy instance
         static void destroy(GameObject* instance);
         //destroy all

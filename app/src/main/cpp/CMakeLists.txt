@@ -71,6 +71,7 @@ add_library( # Sets the name of the library.
         Objects/UI/SplashScreen/SplashScreen.cpp
         Objects/UI/HudVs/HudVs.cpp
         Objects/UI/HudSolo/HudSolo.cpp
+        Objects/UI/Pause/PauseMenu.cpp
         #score
         Objects/System/ScoreManager/ScoreManager.cpp
         #solo

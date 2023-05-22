@@ -24,6 +24,7 @@
 #include "UI/HudVs/HudVs.h"
 #include "System/SoloManager/SoloManager.h"
 #include "UI/HudSolo/HudSolo.h"
+#include "UI/Pause/PauseMenu.h"
 
 //add every game object here
 static void loadGameObjects() {
@@ -31,7 +32,7 @@ static void loadGameObjects() {
 	ASEngine::Instance::addGameObject<Sumo>("SumoBlue");
 	ASEngine::Instance::addGameObject<Terrain>("Terrain");
 	ASEngine::Instance::addGameObject<CameraController>("CameraController");
-	//ASEngine::Instance::addGameObject<Ball>("Ball");
+	ASEngine::Instance::addGameObject<PauseMenu>("pause");
 	ASEngine::Instance::addGameObject<BallVs>("BallVs");
 	ASEngine::Instance::addGameObject<BallSolo>("BallSolo");
 	ASEngine::Instance::addGameObject<Button>("Button");

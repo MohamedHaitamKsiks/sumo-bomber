@@ -35,6 +35,7 @@ namespace ASEngine {
 		};
 
 
+
 		event.pointerPosition.x = GameActivityPointerAxes_getX(&motionEvent->pointers[ptrIndex]) / screenWindowRatio.x;
 		event.pointerPosition.y = GameActivityPointerAxes_getY(&motionEvent->pointers[ptrIndex]) / screenWindowRatio.y;
 
@@ -43,6 +44,21 @@ namespace ASEngine {
 		return event;
 	}
 
+	InputEvent InputEvent::poolKeyEvent(const GameActivityKeyEvent* keyEvent) {
+		InputEvent event;
+
+		event.pointerIndex = 0; // Set pointer index to 0 for key events
+
+		if (keyEvent->action == AKEY_EVENT_ACTION_DOWN) {
+			event.type = INPUT_EVENT_KEY_DOWN;
+		} else if (keyEvent->action == AKEY_EVENT_ACTION_UP) {
+			event.type = INPUT_EVENT_KEY_UP;
+		}
+
+		event.key = keyEvent->keyCode; // Store the key code
+
+		return event;
+	}
 
 	//android app
 	android_app* InputEvent::app = nullptr;

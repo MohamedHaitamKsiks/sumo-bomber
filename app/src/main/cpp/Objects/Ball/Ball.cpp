@@ -155,9 +155,14 @@ void Ball::onDraw(Graphics &graphics) {
 
 }
 
-void Ball::onInputEvent(InputEvent event) {
 
+void Ball::onInputEvent(InputEvent event) {
+	if (event.type == InputEventType::INPUT_EVENT_KEY_DOWN && event.key == AKEYCODE_BACK ){
+		Instance::togglePause();
+        ALOG("clicked on return %i", event.key );
+	}
 }
+
 
 //bounce vall
 void Ball::bounce() {

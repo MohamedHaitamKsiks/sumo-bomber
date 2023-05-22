@@ -44,6 +44,9 @@ void Sumo::onCreate() {
 	//collision mask
 	mask.size = vec2{32.0f, 32.0f};
 
+	//pause menu
+
+
 	//sprite color
 	if (objectId == "SumoRed")
 		sumoSpriteId = "spr_sumo_red";

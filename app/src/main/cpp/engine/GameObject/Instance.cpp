@@ -14,6 +14,10 @@ namespace ASEngine {
 
 	float Instance::timeScale = 1.0f;
 
+	bool Instance::paused = false;
+
+	Instance::GameState Instance::gameState = Instance::GAME_PLAYING;
+
 	GameObject *Instance::create(GameObjectID name) {
 		GameObject* instance = gameObjects[name]();
 		instance->objectId = name;
@@ -45,13 +49,18 @@ namespace ASEngine {
 		//update instance
 		for (auto instance: instances) {
 			//check if enable
-			if (!instance->enable)
-				continue;
+			if (instance->pausable){
+			if (!instance->enable || paused){
+                instance->mask.position = instance->position;
+                layers[instance->layer].push_back(instance);
+				continue;}}
 			//update
-			instance->mask.position = instance->position;
-			instance->onUpdate(delta * Instance::timeScale);
-			//add to corresponding layer
-			layers[instance->layer].push_back(instance);
+            if (instance->enable) {
+                instance->mask.position = instance->position;
+                instance->onUpdate(delta * Instance::timeScale);
+                layers[instance->layer].push_back(instance);
+                //add to corresponding layer
+            }
 		}
 		cleanDestroyQueue();
 	}
@@ -82,6 +91,20 @@ namespace ASEngine {
 		//ALOG("instances : %d", instances.size());
 
 	}
+	void Instance::togglePause() {
+		if (gameState == GAME_PLAYING) {
+			gameState = GAME_PAUSED;
+			paused = true;
+			// Perform actions to pause the game (e.g., stop animations, pause physics, etc.)
+			// Show the pause menu UI or perform other relevant tasks
+		} else if (gameState == GAME_PAUSED) {
+			gameState = GAME_PLAYING;
+			paused = false;
+			// Perform actions to resume the game (e.g., resume animations, resume physics, etc.)
+			// Hide the pause menu UI or perform other relevant tasks
+		}
+	}
+
 
 	//link game object name to object
 	std::unordered_map<std::string, GameObject* (*) ()> Instance::gameObjects = {};
