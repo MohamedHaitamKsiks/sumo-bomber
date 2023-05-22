@@ -78,7 +78,42 @@ void Button::onInputEvent(InputEvent event) {
 }
 
 void Button::onClick() {
-	transitionManager->changeSceneTo("sc_main");
+	clicked = false;
+	switch (type) {
+		case BUTTON_NONE:
+			// nothing
+			break;
+		case BUTTON_SOLO:
+			// Redirect to solo scene
+			transitionManager->changeSceneTo("sc_main");
+			break;
+		case BUTTON_VS:
+			// Redirect to versus scene
+			transitionManager->changeSceneTo("sc_main");
+			break;
+		case BUTTON_ONLINE:
+			// Redirect to online scene
+			transitionManager->changeSceneTo("sc_main");
+			break;
+		case BUTTON_SETTINGS:
+			// Redirect to settings scene
+			transitionManager->changeSceneTo("sc_main");
+			break;
+		case BUTTON_RESUME:
+			// Redirect to resume scene
+
+			Instance::togglePause();
+			break;
+		case BUTTON_MAINSCR:
+			// Redirect to main screen scene
+            Instance::togglePause();
+			transitionManager->changeSceneTo("sc_start");
+
+			break;
+		default:
+			// Handle unrecognized button type
+			break;
+	}
 }
 
 void Button::show(float delai, vec2 startPosition, vec2 endPosition) {

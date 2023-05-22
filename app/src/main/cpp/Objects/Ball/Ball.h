@@ -21,16 +21,11 @@ enum BallState {
 	BALL_EXPLOSION
 };
 
-enum GameState {
-	GAME_PLAYING,
-	GAME_PAUSED
-};
+
 
 
 class Ball : public GameObject{
 public:
-	//pause
-	GameState gameState = GAME_PLAYING;
 	//explosion
 	BallState state = BALL_DEFAULT;
 	//physics
@@ -116,7 +111,7 @@ protected:
 
 	void onInputEvent(InputEvent event);
 
-	void togglePause();
+
 
 
 };

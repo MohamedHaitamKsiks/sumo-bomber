@@ -18,7 +18,9 @@ enum ButtonType {
 	BUTTON_SOLO,
 	BUTTON_VS,
 	BUTTON_ONLINE,
-	BUTTON_SETTINGS
+	BUTTON_SETTINGS,
+	BUTTON_RESUME,
+	BUTTON_MAINSCR
 };
 
 class Button : public GameObject{

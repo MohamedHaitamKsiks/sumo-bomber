@@ -24,8 +24,13 @@ using namespace ASEngine;
 
     public:
         //type
-        ButtonType type = BUTTON_NONE;
+        std::vector<ButtonType> types = {
+                BUTTON_MAINSCR,
+                BUTTON_RESUME,
+
+        };
         //button active
+        std::vector<Button*> buttons = {};
         bool active = true;
         //show
         void show(float delai, vec2 startPosition, vec2 endPosition);
