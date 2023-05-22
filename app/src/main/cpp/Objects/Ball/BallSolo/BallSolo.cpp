@@ -100,6 +100,7 @@ void BallSolo::onInputEvent(InputEvent event) {
 					camera->slowMotion();
 					explosionTimer = 0.0f;
 					//lose
+					soloManager->lose();
 				}
 			}
 			break;
@@ -111,6 +112,7 @@ void BallSolo::onExplosion() {
 		soloManager->isBallDragged = false;
 		camera->slowMotion();
 		//lose
+		soloManager->lose();
 	} else {
 		hudSolo->addPoint();
 	};

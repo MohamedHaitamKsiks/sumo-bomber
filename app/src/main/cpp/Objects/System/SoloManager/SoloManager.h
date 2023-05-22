@@ -6,8 +6,14 @@
 #define SUMO_BOMBER_SOLOMANAGER_H
 
 #include "asengine.h"
+#include "../ScoreManager/ScoreManager.h"
 
 using namespace ASEngine;
+
+enum SoloGameState {
+	SOLO_GAME_PLAYING,
+	SOLO_GAME_OVER
+};
 
 class SoloManager : public GameObject{
 
@@ -26,8 +32,14 @@ public:
 	float time = 0.0f;
 	//spawn a new ball
 	void spawnBall();
+	//game state
+	SoloGameState state = SOLO_GAME_PLAYING;
+	//lose
+	void lose();
 
 private:
+	//score manager
+	ScoreManager* scoreManager;
 	//events
 	void onCreate();
 

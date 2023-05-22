@@ -146,7 +146,7 @@
   {
     "name": "spr_buttons",
     "image": "ui/game_title_buttons.png",
-    "frames": 5,
+    "frames": 8,
     "offset": {
       "x": 62.0,
       "y": 20.0
@@ -171,12 +171,39 @@
     }
   },
   {
+    "name": "spr_button_toggle",
+    "image": "ui/toggle_button.png",
+    "frames": 2,
+    "offset": {
+      "x": 0.0,
+      "y": 0.0
+    }
+  },
+  {
     "name": "spr_game_title",
     "image": "ui/game_title.png",
     "frames": 1,
     "offset": {
       "x": 90.0,
       "y": 80.0
+    }
+  },
+  {
+    "name": "spr_paused",
+    "image": "ui/paused.png",
+    "frames": 1,
+    "offset": {
+      "x": 90.0,
+      "y": 32.0
+    }
+  },
+  {
+    "name": "spr_game_over",
+    "image": "ui/game_over.png",
+    "frames": 1,
+    "offset": {
+      "x": 90.0,
+      "y": 32.0
     }
   },
   {

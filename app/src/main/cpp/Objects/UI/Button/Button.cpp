@@ -35,11 +35,15 @@ void Button::onUpdate(float delta) {
 			leftParticle->type = BUTTON_PART_LEFT;
 			leftParticle->position = position - particleOffset;
 			leftParticle->velocity = particleVelocity * -1.0f;
+			leftParticle->pausable = pausable;
+			leftParticle->layer = layer;
 			//right
 			ButtonParticle* rightParticle = (ButtonParticle*) Instance::create("ButtonParticle");
 			rightParticle->type = BUTTON_PART_RIGHT;
 			rightParticle->position = position + particleOffset;
 			rightParticle->velocity = particleVelocity;
+			rightParticle->pausable = pausable;
+			rightParticle->layer = layer;
 		}
 	}
 
@@ -73,6 +77,7 @@ void Button::onInputEvent(InputEvent event) {
 	if (active && event.type == ASEngine::INPUT_EVENT_POINTER_DOWN && mask.pointInside(event.pointerPosition)) {
 		clicked = true;
 		clickDelaiTimer = CLICK_DELAI_DURATION;
+		clickScale = 1.0f;
 		//camera->shake();
 	}
 }
@@ -85,7 +90,7 @@ void Button::onClick() {
 			break;
 		case BUTTON_SOLO:
 			// Redirect to solo scene
-			transitionManager->changeSceneTo("sc_main");
+			transitionManager->changeSceneTo("sc_solo");
 			break;
 		case BUTTON_VS:
 			// Redirect to versus scene
@@ -101,14 +106,17 @@ void Button::onClick() {
 			break;
 		case BUTTON_RESUME:
 			// Redirect to resume scene
-
-			Instance::togglePause();
+			if (Instance::paused)
+				Instance::togglePause();
 			break;
 		case BUTTON_MAINSCR:
 			// Redirect to main screen scene
-            Instance::togglePause();
-			transitionManager->changeSceneTo("sc_start");
-
+			if (Instance::paused)
+            	Instance::togglePause();
+			transitionManager->changeSceneTo("sc_title");
+			break;
+		case BUTTON_RETRY:
+			transitionManager->changeSceneTo(Scene::getCurrentScene());
 			break;
 		default:
 			// Handle unrecognized button type

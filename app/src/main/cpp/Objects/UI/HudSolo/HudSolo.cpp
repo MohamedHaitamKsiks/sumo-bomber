@@ -32,6 +32,12 @@ void HudSolo::onDraw(Graphics &graphics) {
 			Screen::getSize().y * 0.12f
 	};
 	graphics.drawText(score.str(), textPosition, "ft_pixel", 3);
+
+	//gameover visible
+	if (isGameOverVisible) {
+		graphics.drawRectangle(vec2::zero(), Screen::getSize(), Color{0.0f, 0.0f, 0.0f, 0.4f});
+		graphics.drawSprite("spr_game_over", 0, vec2{Screen::getCenter().x, 100.0f});
+	}
 }
 
 void HudSolo::onInputEvent(InputEvent event) {
@@ -40,4 +46,27 @@ void HudSolo::onInputEvent(InputEvent event) {
 
 void HudSolo::addPoint() {
 	scoreManager->gameModeSolo.score++;
+}
+
+void HudSolo::showGameOver() {
+	isGameOverVisible = true;
+	//creating buttons
+	for (int i = 0; i < types.size(); i++) {
+		//add button
+		Button* button = (Button *) (Instance::create("Button"));
+		button->type = types[i];
+		button->layer = layer;
+		//start
+		vec2 buttonStartPosition = vec2{
+				-Screen::getCenter().x,
+				44.0f * ((float) i) + 180.0f
+		};
+		//end
+		vec2 buttonEndPosition = vec2{
+				Screen::getCenter().x,
+				44.0f * ((float) i) + 180.0f
+		};
+		//show up
+		button->show(0.15f * float(i) + 0.3f, buttonStartPosition, buttonEndPosition);
+	}
 }
