@@ -43,6 +43,9 @@ protected:
 	//get score manager
 	ScoreManager* scoreManager;
 
+	//sprite
+	SpriteID spriteId = "spr_ball";
+
 	//fall before serve
 	float elevation = 0.0f;
 	float elevationSpeed = 0.0f;

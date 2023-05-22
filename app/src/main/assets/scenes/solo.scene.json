@@ -1,0 +1,18 @@
+{
+  "instances": [
+    {
+      "name": "SoloManager",
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "name": "HudSolo",
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    }
+  ]
+}
