@@ -10,6 +10,10 @@
   {
     "name": "sc_main",
     "file": "main.scene.json"
+  },
+  {
+    "name": "sc_solo",
+    "file": "solo.scene.json"
   }
 
 ]

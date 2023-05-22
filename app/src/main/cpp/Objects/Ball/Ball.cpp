@@ -125,7 +125,7 @@ void Ball::onDraw(Graphics &graphics) {
 		vec2 shadowScale = scale * Interpolate::linear(vec2::one(), vec2::zero(), elevation / ELEVATION_START);
 		Color shadowColor = Interpolate::linear(Color::black, Color::transparent, elevation / ELEVATION_START);
 		//draw shadow
-		graphics.drawSprite("spr_ball", frame, position + vec2{0.0f, 8.0f}, shadowScale, rotation, shadowColor);
+		graphics.drawSprite(spriteId, frame, position + vec2{0.0f, 8.0f}, shadowScale, rotation, shadowColor);
 		//check if is flashed
 		bool flash = (explosionTimer < FLASH_DURATION) && (sin(2.0f * M_PI * FLASH_FREQ * time) >= 0.0f);\
 		//elevation
@@ -140,7 +140,7 @@ void Ball::onDraw(Graphics &graphics) {
 		};
 		//draw ball
 		if (!flash)
-			graphics.drawSprite("spr_ball", frame, position + elevationOffset, scale * elevationScale, rotation);
+			graphics.drawSprite(spriteId, frame, position + elevationOffset, scale * elevationScale, rotation);
 		else
 			graphics.drawSprite("spr_ball_light", frame, position + elevationOffset, scale * elevationScale, rotation);
 	}

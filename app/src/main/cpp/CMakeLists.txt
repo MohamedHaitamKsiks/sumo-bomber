@@ -70,9 +70,12 @@ add_library( # Sets the name of the library.
         Objects/UI/TransitionManager/TransitionManager.cpp
         Objects/UI/SplashScreen/SplashScreen.cpp
         Objects/UI/HudVs/HudVs.cpp
+        Objects/UI/HudSolo/HudSolo.cpp
         Objects/UI/Pause/PauseMenu.cpp
         #score
         Objects/System/ScoreManager/ScoreManager.cpp
+        #solo
+        Objects/System/SoloManager/SoloManager.cpp
 
         # Provides a relative path to your source file(s).
         main.cpp

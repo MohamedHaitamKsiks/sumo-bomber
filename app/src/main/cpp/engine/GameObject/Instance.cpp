@@ -29,7 +29,7 @@ namespace ASEngine {
 		if (!instance->enable)
 			return;
 		//find instance index
-		destroyQueue.push_back(instance);
+		//destroyQueue.push_back(instance);
 		instance->enable = false;
 
 	}

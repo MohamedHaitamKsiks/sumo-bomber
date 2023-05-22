@@ -63,6 +63,24 @@
     }
   },
   {
+    "name": "spr_ball_red",
+    "image": "ball/ball_red.png",
+    "frames": 7,
+    "offset": {
+      "x": 16.0,
+      "y": 16.0
+    }
+  },
+  {
+    "name": "spr_ball_blue",
+    "image": "ball/ball_blue.png",
+    "frames": 7,
+    "offset": {
+      "x": 16.0,
+      "y": 16.0
+    }
+  },
+  {
     "name": "spr_ball_light",
     "image": "ball/ball_light.png",
     "frames": 7,
@@ -83,7 +101,7 @@
   {
     "name": "spr_floor",
     "image": "floor/floor.png",
-    "frames": 5,
+    "frames": 4,
     "offset": {
       "x": 0.0,
       "y": 0.0
