@@ -225,6 +225,15 @@
     }
   },
   {
+    "name": "spr_sign",
+    "image": "ui/sign.png",
+    "frames": 2,
+    "offset": {
+      "x": 16.0,
+      "y": 16.0
+    }
+  },
+  {
     "name": "spr_score_support",
     "image": "ui/score_support.png",
     "frames": 1,
