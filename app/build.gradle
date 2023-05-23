@@ -1,5 +1,8 @@
 plugins {
     id 'com.android.application'
+
+
+
 }
 
 android {
@@ -21,6 +24,7 @@ android {
         }
     }
 
+    //shriking
     buildTypes {
         release {
             minifyEnabled true
@@ -28,6 +32,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    //ignore .ase files
+    aaptOptions {
+        ignoreAssetsPattern "!**/*.ase"
+        ignoreAssetsPattern "!*.ase"
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8

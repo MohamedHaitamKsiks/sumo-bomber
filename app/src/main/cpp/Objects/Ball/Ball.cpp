@@ -7,7 +7,7 @@
 ParticleDescriptor Ball::explosionDescriptor = {};
 
 void Ball::onCreate() {
-	collsionEnabled = false;
+	collsionEnabled = true;
 	mask.size = vec2{16.0f, 16.0f};
 	//level area
 	levelArea.position = vec2::zero();
@@ -32,8 +32,6 @@ void Ball::onCreate() {
 	explosionEmitter.particlesNumber = 5;
 	explosionEmitter.explosiveness = 0.5f;
 	explosionEmitter.spriteId = "spr_ball_explosion";
-	//set object id
-	objectId = "Ball";
 	//layer
 	layer = 1;
 	//fall
@@ -152,6 +150,9 @@ void Ball::onDraw(Graphics &graphics) {
 	}
 	//draw explosion
 	explosionEmitter.draw(graphics);
+
+	//draw mask
+	//graphics.drawRectangle(mask.position, mask.size, Color::black);
 
 }
 

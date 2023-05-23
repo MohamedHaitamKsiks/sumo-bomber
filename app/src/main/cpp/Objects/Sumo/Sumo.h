@@ -67,10 +67,11 @@ public:
 	float pitchAngle = 0.0f;
 	float pitchAngleSpeed = 1.22f * M_PI;
 	float arrowScale = 0.0f;
-	const float GRAB_DURATION = 3.0f;
+	const float GRAB_DURATION = 2.0f;
 	float grabTimer = GRAB_DURATION;
 	//sprite rotation for feedback purpose
 	float grabRotation = 0.0f;
+	const float GRAB_ROTATION_SPEED = 2.0f * M_PI;
 	//heat
 	const float GRAB_HEAT_SCALE = 1.5f;
 	const float OVERHEAT_STUN_DURATION = 1.0f;

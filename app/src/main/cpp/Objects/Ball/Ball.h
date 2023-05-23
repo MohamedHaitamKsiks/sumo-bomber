@@ -30,7 +30,7 @@ public:
 	BallState state = BALL_DEFAULT;
 	//physics
 	vec2 velocity{0.0f, 10.0f};
-	const float DEC = 40.0f;
+	const float DEC = 0.0f;
 
 	//start fall
 	void fall();
