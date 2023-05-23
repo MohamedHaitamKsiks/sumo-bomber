@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
 
+
+
 }
 
 android {
@@ -15,6 +17,11 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        externalNativeBuild {
+            cmake {
+                arguments "-DANDROID_STL=c++_shared"
+            }
+        }
     }
 
     //shriking
@@ -48,7 +55,7 @@ android {
 }
 
 dependencies {
-
+    implementation 'com.google.oboe:oboe:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
     implementation 'androidx.games:games-activity:1.0.0'

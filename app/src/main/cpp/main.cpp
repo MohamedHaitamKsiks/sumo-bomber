@@ -23,6 +23,7 @@ extern "C" {
  * @param pApp the app the commands are coming from
  * @param cmd the command to handle
  */
+
 void handle_cmd(android_app *pApp, int32_t cmd) {
 	//game app
 	ASEngine::Application* application;
