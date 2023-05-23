@@ -10,7 +10,7 @@
 void SettingScreen::onCreate() {
 	layer = 100;
 	//get setting manager
-	SettingManager* settingManager = (SettingManager*) Instance::create("SettingManager");
+	SettingManager* settingManager = (SettingManager*) Instance::find("SettingManager");
 
 	//create buttons
 	ButtonToggle* audioButton = (ButtonToggle*) Instance::create("ButtonToggle");

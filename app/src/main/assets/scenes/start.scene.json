@@ -1,6 +1,13 @@
 {
   "instances": [
     {
+      "name": "SettingManager",
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
       "name": "ScoreManager",
       "position": {
         "x": 0,
