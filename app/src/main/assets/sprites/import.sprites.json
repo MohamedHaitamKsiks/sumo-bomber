@@ -207,6 +207,18 @@
     }
   },
   {
+<<<<<<< HEAD
+=======
+    "name": "spr_settings",
+    "image": "ui/settings.png",
+    "frames": 1,
+    "offset": {
+      "x": 90.0,
+      "y": 32.0
+    }
+  },
+  {
+>>>>>>> 8b9071a (+ accessibility)
     "name": "spr_score_support",
     "image": "ui/score_support.png",
     "frames": 1,
