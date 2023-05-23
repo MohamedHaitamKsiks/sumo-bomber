@@ -7,7 +7,6 @@
 void SettingManager::onCreate() {
 	//make setting manager persistant in all scenes
 	persistant = true;
-	ALOG("setting manager created");
 }
 
 void SettingManager::onUpdate(float delta) {

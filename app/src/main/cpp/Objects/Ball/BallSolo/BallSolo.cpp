@@ -11,7 +11,7 @@ void BallSolo::onCreate() {
 	velocity = vec2{1.0f, 0.0f}.rotate(direction) * 100.0f;
 	mask.size = vec2::one() * 32.0f;
 	//timer
-	explosionTimer = 4.0f;
+	explosionTimer = 3.0f;
 	//fall
 	BOUNCE_NUMBER = 1;
 	fall();
