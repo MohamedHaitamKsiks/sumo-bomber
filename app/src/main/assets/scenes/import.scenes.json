@@ -14,6 +14,10 @@
   {
     "name": "sc_solo",
     "file": "solo.scene.json"
+  },
+  {
+    "name": "sc_setting",
+    "file": "settings.scene.json"
   }
 
 ]

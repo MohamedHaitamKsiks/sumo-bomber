@@ -4,7 +4,6 @@
 
 #include "SoloManager.h"
 #include "../../Ball/BallSolo/BallSolo.h"
-#include "../SettingManager/SettingManager.h"
 
 void SoloManager::onCreate() {
 	//score
@@ -20,9 +19,6 @@ void SoloManager::onCreate() {
 	//blue
 	blueArea.position = vec2{0.0f, Screen::getSize().y * 0.7f};
 	blueArea.size = vec2{Screen::getSize().x, Screen::getSize().y * 0.3f};
-	//color blind
-	SettingManager* settingManager = (SettingManager*) Instance::find("SettingManager");
-	hasAccessibility = settingManager->colorBlindAccessibility;
 }
 
 void SoloManager::onUpdate(float delta) {
@@ -96,34 +92,6 @@ void SoloManager::onDraw(Graphics &graphics) {
 		};
 		graphics.drawSprite("spr_line_floor", 0, linePosition);
 	}
-
-	//draw signs for accessibility
-	if (hasAccessibility) {
-		//draw + area
-		for (int j = 0; j < 3; j++) {
-			for (int i = 0; i < 6; i++) {
-				vec2 tilePosition = vec2{
-						float(i) * 32.0f - 8.0f + 16.0f,
-						float(j) * 32.0f + 16.0f
-				};
-				Color modulate = Color{1.0f, 1.0f, 1.0f, 0.3f -  0.3f * float(j) / 3.0f};
-				graphics.drawSprite("spr_sign", 1, position + tilePosition, scale, rotation, modulate);
-			}
-		}
-
-		//draw - area
-		for (int j = 0; j < 3; j++) {
-			for (int i = 0; i < 6; i++) {
-				vec2 tilePosition = vec2{
-						float(i) * 32.0f - 8.0f + 16.0f,
-						float(j) * 32.0f + 16.0f + blueArea.position.y
-				};
-				Color modulate = Color{1.0f, 1.0f, 1.0f, 0.3f * float(j + 1) / 3.0f};
-				graphics.drawSprite("spr_sign", 0, position + tilePosition, scale, rotation, modulate);
-			}
-		}
-	}
-
 }
 
 void SoloManager::onInputEvent(InputEvent event) {
