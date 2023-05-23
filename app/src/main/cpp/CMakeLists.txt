@@ -89,8 +89,8 @@ add_library( # Sets the name of the library.
         Objects/System/SoloManager/SoloManager.cpp
 
         #audio
-        AudioEngine/PlaySound.cpp
-
+        engine/AudioEngine/OboeSinePlayer.cpp
+        engine/AudioEngine/OboeSinePlayer.h
         # Provides a relative path to your source file(s).
         main.cpp
 

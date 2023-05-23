@@ -13,9 +13,9 @@
 
 #include <game-activity/GameActivity.cpp>
 #include <game-text-input/gametextinput.cpp>
-#include "AudioEngine/PlaySound.cpp"
+
 extern "C" {
-OboeSinePlayer sinePlayer;
+
 #include <game-activity/native_app_glue/android_native_app_glue.c>
 
 /*!
@@ -37,7 +37,6 @@ void handle_cmd(android_app *pApp, int32_t cmd) {
 			application = new ASEngine::Application();
 			application->init(pApp);
             pApp->userData = application;
-            sinePlayer.startAudio();
             break;
         case APP_CMD_TERM_WINDOW:
             // The window is being destroyed. Use this to clean up your userData to avoid leaking
