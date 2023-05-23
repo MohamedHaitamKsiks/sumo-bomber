@@ -73,5 +73,5 @@ void TitleScreen::onDraw(Graphics &graphics) {
 }
 
 void TitleScreen::onInputEvent(InputEvent event) {
-
+	
 }

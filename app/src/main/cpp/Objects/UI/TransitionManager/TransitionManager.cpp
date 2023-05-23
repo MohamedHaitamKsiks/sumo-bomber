@@ -11,7 +11,7 @@ void TransitionManager::onCreate() {
 	//fade out
 	fade = 0.0f;
 	//layer
-	layer = 100;
+	layer = 100000;
 }
 
 void TransitionManager::onUpdate(float delta) {

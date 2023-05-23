@@ -7,6 +7,7 @@
 
 void CameraController::onCreate() {
 	persistant = true;
+	pausable = false;
 }
 
 void CameraController::onUpdate(float delta) {

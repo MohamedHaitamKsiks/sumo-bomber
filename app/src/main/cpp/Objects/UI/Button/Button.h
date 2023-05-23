@@ -20,7 +20,8 @@ enum ButtonType {
 	BUTTON_ONLINE,
 	BUTTON_SETTINGS,
 	BUTTON_RESUME,
-	BUTTON_MAINSCR
+	BUTTON_MAINSCR,
+	BUTTON_RETRY
 };
 
 class Button : public GameObject{

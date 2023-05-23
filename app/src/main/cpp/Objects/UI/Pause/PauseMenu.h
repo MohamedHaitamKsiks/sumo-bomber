@@ -17,31 +17,26 @@ using namespace ASEngine;
 #include "../../CameraController/CameraController.h"
 #include "../Button/Button.h"
 
-
-
-
     class PauseMenu : public GameObject{
 
     public:
         //type
         std::vector<ButtonType> types = {
-                BUTTON_MAINSCR,
                 BUTTON_RESUME,
-
+                BUTTON_MAINSCR,
         };
         //button active
         std::vector<Button*> buttons = {};
         bool active = true;
         //show
-        void show(float delai, vec2 startPosition, vec2 endPosition);
+        void show();
     private:
         //scene's camera
         CameraController* camera;
         //scene's transition
         TransitionManager* transitionManager;
-
-
-
+        //time
+        float time = 0.0f;
 
         void onCreate();
 
