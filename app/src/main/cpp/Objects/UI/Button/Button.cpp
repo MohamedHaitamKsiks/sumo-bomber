@@ -102,7 +102,7 @@ void Button::onClick() {
 			break;
 		case BUTTON_SETTINGS:
 			// Redirect to settings scene
-			transitionManager->changeSceneTo("sc_setting");
+			transitionManager->changeSceneTo("sc_main");
 			break;
 		case BUTTON_RESUME:
 			// Redirect to resume scene

@@ -1,18 +1,5 @@
 {
   "instances": [
-    {
-      "name": "SettingScreen",
-      "position": {
-        "x": 0,
-        "y": 0
-      }
-    },
-    {
-      "name": "ScrollingBackground",
-      "position": {
-        "x": 0,
-        "y": 0
-      }
-    }
+
   ]
 }
