@@ -98,7 +98,7 @@ void Button::onClick() {
 			break;
 		case BUTTON_ONLINE:
 			// Redirect to online scene
-			transitionManager->changeSceneTo("sc_main");
+			transitionManager->changeSceneTo("sc_online");
 			break;
 		case BUTTON_SETTINGS:
 			// Redirect to settings scene
