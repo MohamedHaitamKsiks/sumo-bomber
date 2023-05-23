@@ -3,6 +3,7 @@
 //
 
 #include "BallSolo.h"
+#include "../../System/SettingManager/SettingManager.h"
 
 void BallSolo::onCreate() {
 	Ball::onCreate();
@@ -19,6 +20,9 @@ void BallSolo::onCreate() {
 	color = colors[Random::randi() % 2];
 	//get hud solo
 	hudSolo = (HudSolo*) Instance::find("HudSolo");
+	//get accessibility
+	SettingManager* settingManager = (SettingManager*) Instance::find("SettingManager");
+	hasAccessibility = settingManager->colorBlindAccessibility;
 }
 
 void BallSolo::onUpdate(float delta) {
@@ -52,6 +56,10 @@ void BallSolo::onDraw(Graphics &graphics) {
 	else
 		spriteId = "spr_ball_red";
 	Ball::onDraw(graphics);
+	//draw accessibility
+	if (hasAccessibility && state != BALL_EXPLOSION) {
+		graphics.drawSprite("spr_sign", int(color == BALL_RED), position - vec2{0.0f, elevation}, vec2::one() * 0.8f, 0.0f);
+	}
 	//graphics.drawRectangle(mask.position, mask.size, Color::green);
 }
 

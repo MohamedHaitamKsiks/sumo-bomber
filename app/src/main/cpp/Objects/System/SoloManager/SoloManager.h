@@ -39,7 +39,11 @@ public:
 
 private:
 	//score manager
-	ScoreManager* scoreManager;
+	ScoreManager* scoreManager = nullptr;
+	//accessiblity
+	bool hasAccessibility = false;
+
+
 	//events
 	void onCreate();
 

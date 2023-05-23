@@ -39,6 +39,8 @@ private:
 	//drag
 	const float DRAG_ELEVATION = 12.0f;
 	void collideWithArea(float delta,Rectangle area);
+	//settings
+	bool hasAccessibility = false;
 
 	//on create
 	void onCreate();
