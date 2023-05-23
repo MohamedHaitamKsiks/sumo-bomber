@@ -15,7 +15,8 @@ project("sumobomber")
 # Gradle automatically packages shared libraries with your APK.
 
 
-include_directories(engine/)
+include_directories(engine/
+        enet)
 
 
 add_library( # Sets the name of the library.
@@ -63,6 +64,10 @@ add_library( # Sets the name of the library.
         Objects/Ball/Ball.cpp
         Objects/Ball/BallSolo/BallSolo.cpp
         Objects/Ball/BallVs/BallVs.cpp
+        #networking
+        Objects/Sumo/online/SumoR.cpp
+        Objects/Sumo/online/SumoC.cpp
+        Objects/Ball/BallVs/BallVSon.cpp
         #ui
         Objects/UI/Button/Button.cpp
         Objects/UI/Button/ButtonParticle.cpp
@@ -75,6 +80,7 @@ add_library( # Sets the name of the library.
         Objects/UI/SettingScreen/SettingScreen.cpp
         Objects/UI/ButtonToggle/ButtonToggle.cpp
         Objects/UI/ScrollingBackground/ScrollingBackground.cpp
+        Objects/UI/OnlineScreen/OnlineScreen.cpp
         #score
         Objects/System/ScoreManager/ScoreManager.cpp
         #settings
@@ -95,7 +101,12 @@ add_library( # Sets the name of the library.
 # default, you only need to specify the name of the public NDK library
 # you want to add. CMake verifies that the library exists before
 # completing its build.
-
+add_library(
+        enet
+        STATIC
+        IMPORTED
+)
+set_target_properties(enet PROPERTIES IMPORTED_LOCATION enet/libenet.a)
 find_library( # Sets the name of the path variable.
         log-lib
 

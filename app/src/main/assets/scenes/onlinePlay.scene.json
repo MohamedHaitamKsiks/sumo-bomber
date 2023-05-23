@@ -1,0 +1,52 @@
+{
+  "instances": [
+    {
+      "name": "CameraController",
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "name": "HudVs",
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "name": "Terrain",
+      "position": {
+        "x": -64,
+        "y": -64
+      }
+    },
+    {
+      "name": "BallVson",
+      "position": {
+        "x": 90,
+        "y": 200
+      }
+    },
+    {
+      "name": "SumoC",
+      "position": {
+        "x": 90,
+        "y": 240
+      }
+    },
+    {
+      "name": "SumoR",
+      "position": {
+        "x": 90,
+        "y": 80
+      }
+    },
+    {"name": "pause",
+      "position": {
+        "x": 90,
+        "y": 80
+      }
+    }
+  ]
+}
