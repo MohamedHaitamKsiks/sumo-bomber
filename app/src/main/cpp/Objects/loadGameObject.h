@@ -25,6 +25,10 @@
 #include "System/SoloManager/SoloManager.h"
 #include "UI/HudSolo/HudSolo.h"
 #include "UI/Pause/PauseMenu.h"
+#include "System/SettingManager/SettingManager.h"
+#include "UI/SettingScreen/SettingScreen.h"
+#include "UI/ButtonToggle/ButtonToggle.h"
+#include "UI/ScrollingBackground/ScrollingBackground.h"
 
 //add every game object here
 static void loadGameObjects() {
@@ -44,7 +48,10 @@ static void loadGameObjects() {
 	ASEngine::Instance::addGameObject<HudVs>("HudVs");
 	ASEngine::Instance::addGameObject<HudSolo>("HudSolo");
 	ASEngine::Instance::addGameObject<SoloManager>("SoloManager");
-
+	ASEngine::Instance::addGameObject<SettingManager>("SettingManager");
+	ASEngine::Instance::addGameObject<SettingScreen>("SettingScreen");
+	ASEngine::Instance::addGameObject<ButtonToggle>("ButtonToggle");
+	ASEngine::Instance::addGameObject<ScrollingBackground>("ScrollingBackground");
 }
 
 #endif //ANDROIDSIMPLEENGINE_LOADGAMEOBJECT_H
