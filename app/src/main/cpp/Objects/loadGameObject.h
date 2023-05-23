@@ -25,15 +25,22 @@
 #include "System/SoloManager/SoloManager.h"
 #include "UI/HudSolo/HudSolo.h"
 #include "UI/Pause/PauseMenu.h"
+#include "Sumo/online/SumoC.h"
+#include "Sumo/online/SumoR.h"
+#include "Ball/BallVs/BallVSon.h"
+
 
 //add every game object here
 static void loadGameObjects() {
 	ASEngine::Instance::addGameObject<Sumo>("SumoRed");
 	ASEngine::Instance::addGameObject<Sumo>("SumoBlue");
+	ASEngine::Instance::addGameObject<SumoR>("SumoR");
+	ASEngine::Instance::addGameObject<SumoC>("SumoC");
 	ASEngine::Instance::addGameObject<Terrain>("Terrain");
 	ASEngine::Instance::addGameObject<CameraController>("CameraController");
 	ASEngine::Instance::addGameObject<PauseMenu>("pause");
 	ASEngine::Instance::addGameObject<BallVs>("BallVs");
+	ASEngine::Instance::addGameObject<BallVson>("BallVson");
 	ASEngine::Instance::addGameObject<BallSolo>("BallSolo");
 	ASEngine::Instance::addGameObject<Button>("Button");
 	ASEngine::Instance::addGameObject<ButtonParticle>("ButtonParticle");
