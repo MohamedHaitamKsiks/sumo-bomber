@@ -42,7 +42,7 @@ void Sumo::onCreate() {
 	smokeEmitter.particlesNumber = 10;
 
 	//collision mask
-	mask.size = vec2{32.0f, 32.0f};
+	mask.size = vec2{48.0f, 48.0f};
 
 	//pause menu
 
@@ -151,9 +151,9 @@ void Sumo::onUpdate(float delta) {
 	//catch
 	else if (state == SUMO_CATCH) {
 		arrowScale = Interpolate::linear(arrowScale, 1.0f, 25.0f * delta);;
-		//pitchAngle += pitchAngleSpeed * delta;
-		if (direction.length() > 0.0f)
-			pitchAngle = -direction.angle();
+		pitchAngle += pitchAngleSpeed * delta;
+		/*if (direction.length() > 0.0f)
+			pitchAngle = -direction.angle();*/
 		rotation = pitchAngle + M_PI;
 		//grab timer
 		grabTimer -= delta;
@@ -191,7 +191,7 @@ void Sumo::onUpdate(float delta) {
 
 	//collision with ball
 	if (state != SUMO_CATCH) {
-		Ball* collisionBall = (Ball*) collideWithObject("Ball", velocity * delta);
+		Ball* collisionBall = (Ball*) collideWithObject("BallVs", velocity * delta);
 		//ball just entered
 		if (collisionBall && collisionBall->state == BALL_DEFAULT && !ballEntered) {
 			ball = collisionBall;
@@ -327,6 +327,7 @@ void Sumo::pitch() {
 
 //on ball entered
 void Sumo::onBallEntered() {
+	ALOG("Ball entered");
 	//check ball state
 	if (ball->state != BALL_DEFAULT)
 		return;

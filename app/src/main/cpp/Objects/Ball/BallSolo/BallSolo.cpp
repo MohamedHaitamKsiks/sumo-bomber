@@ -9,11 +9,11 @@ void BallSolo::onCreate() {
 	Ball::onCreate();
 	float direction = Random::rand_rangef(0.0f, 2.0f * M_PI);
 	velocity = vec2{1.0f, 0.0f}.rotate(direction) * 100.0f;
-	mask.size = vec2::one() * 32.0f;
+	mask.size = vec2::one() * 48.0f;
 	//timer
-	explosionTimer = 4.0f;
+	explosionTimer = 3.0f;
 	//fall
-	BOUNCE_NUMBER = 1;
+	BOUNCE_NUMBER = 0;
 	fall();
 	//ball color
 	BallColor colors[] = {BALL_BLUE, BALL_RED};

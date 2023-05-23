@@ -31,7 +31,7 @@ void SoloManager::onUpdate(float delta) {
 	spawnTimer -= delta;
 	if (spawnTimer < 0.0f && state == SOLO_GAME_PLAYING) {
 		spawnBall();
-		spawnTimer = SPAWN_DURATION * Interpolate::linear(1.0f, 0.66f, time / 30.0f);
+		spawnTimer = SPAWN_DURATION * Interpolate::linear(1.0f, 0.4f, time / 30.0f);
 	}
 }
 
@@ -133,8 +133,8 @@ void SoloManager::onInputEvent(InputEvent event) {
 void SoloManager::spawnBall() {
 	//create ball
 	vec2 ballPosition = vec2{
-		playerArea.position.x + Random::rand_rangef(16.0f, playerArea.size.x - 16.0f),
-		playerArea.position.y + Random::rand_rangef(16.0f, playerArea.size.y - 16.0f)
+		playerArea.position.x + Random::rand_rangef(32.0f, playerArea.size.x - 32.0f),
+		playerArea.position.y + Random::rand_rangef(32.0f, playerArea.size.y - 32.0f)
 	};
 	BallSolo* ball = (BallSolo*) Instance::create("BallSolo");
 	ball->position = ballPosition;

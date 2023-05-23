@@ -24,12 +24,14 @@ void BallVs::onCreate() {
 	//super call
 	Ball::onCreate();
 	//params
-	EXPLOSION_DURATION = 15.0f;
+	EXPLOSION_DURATION = 10.0f;
 	explosionTimer = EXPLOSION_DURATION;
 	DESTROY_DURATION = 3.0f;
 	BOUNCE_NUMBER = 3;
 	//get hud
 	hud = (HudVs*) Instance::find("HudVs");
+	//launch ball
+	velocity = vec2{1.0f , 0.0f}.rotate(Random::randf() * 2.0f * M_PI) * 150.0f;
 
 }
 
