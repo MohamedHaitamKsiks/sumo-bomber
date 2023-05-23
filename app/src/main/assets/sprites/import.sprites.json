@@ -175,8 +175,17 @@
     "image": "ui/toggle_button.png",
     "frames": 2,
     "offset": {
-      "x": 0.0,
-      "y": 0.0
+      "x": 96.0,
+      "y": 24.0
+    }
+  },
+  {
+    "name": "spr_button_toggle_pressed",
+    "image": "ui/toggle_button_pressed.png",
+    "frames": 1,
+    "offset": {
+      "x": 96.0,
+      "y": 24.0
     }
   },
   {
@@ -207,8 +216,6 @@
     }
   },
   {
-<<<<<<< HEAD
-=======
     "name": "spr_settings",
     "image": "ui/settings.png",
     "frames": 1,
@@ -218,7 +225,6 @@
     }
   },
   {
->>>>>>> 8b9071a (+ accessibility)
     "name": "spr_score_support",
     "image": "ui/score_support.png",
     "frames": 1,
