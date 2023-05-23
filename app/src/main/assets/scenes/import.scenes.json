@@ -16,8 +16,13 @@
     "file": "solo.scene.json"
   },
   {
-    "name": "sc_online",
-    "file": "onlinePlay.scene.json"
-  }
 
+    "name": "sc_setting",
+    "file": "settings.scene.json"
+  },
+  {
+    "name": "sc_online",
+    "file": "online.scene.json"
+
+  }
 ]

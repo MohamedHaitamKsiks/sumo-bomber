@@ -193,7 +193,7 @@ void Sumo::onUpdate(float delta) {
 	if (state != SUMO_CATCH) {
 		Ball* collisionBall = (Ball*) collideWithObject("Ball", velocity * delta);
 		//ball just entered
-		if (collisionBall && !ballEntered) {
+		if (collisionBall && collisionBall->state == BALL_DEFAULT && !ballEntered) {
 			ball = collisionBall;
 			onBallEntered();
 			ballEntered = true;
