@@ -89,6 +89,9 @@ add_library( # Sets the name of the library.
         Objects/System/SoloManager/SoloManager.cpp
 
         #audio
+        decoder/WavDecoder.cpp
+        engine/AudioEngine/AudioEngine.cpp
+        util/Logger.cpp
         engine/AudioEngine/OboeSinePlayer.cpp
         engine/AudioEngine/OboeSinePlayer.h
         # Provides a relative path to your source file(s).
@@ -144,6 +147,7 @@ target_link_libraries( # Specifies the target library.
 
         # for AImageDecoder, to load images from resources
         jnigraphics
+        #for audio api
         oboe::oboe
         # Links the target library to the log library
         # included in the NDK.

@@ -2,7 +2,10 @@
 
 #include <jni.h>
 
+#include <string>
 
+#include "util/Logger.h"
+#include "engine/AudioEngine/AudioEngine.h"
 #include "engine/asengine.h"
 #include "Objects/loadGameObject.h"
 
@@ -109,4 +112,45 @@ void android_main(struct android_app *pApp) {
         }
     } while (!pApp->destroyRequested);
 }
+}
+
+static AudioEngine *audioEngine = new AudioEngine();
+
+
+extern "C" jstring
+Java_com_example_sumobomber_MainActivity_stringFromJNI(
+        JNIEnv* env,
+        jobject /* this */) {
+    std::string hello = "Hello from C++";
+    return env->NewStringUTF(hello.c_str());
+}
+
+
+extern "C" void
+Java_com_example_sumobomber_AudioEngineBridge_jniPlay(
+        JNIEnv *env,
+        jobject /* this */,
+        jint indexJava) {
+    audioEngine->play();
+}
+
+extern "C" void
+Java_com_example_sumobomber_AudioEngineBridge_jniLoadAndPlay(
+        JNIEnv *env,
+        jobject /* this */,
+        jstring internal_storage_path_java) {
+    const char *pathUTF = env->GetStringUTFChars(internal_storage_path_java, 0);
+    audioEngine->load(pathUTF);
+}
+extern "C" JNIEXPORT void JNICALL
+Java_com_example_sumobomber_AudioEngineBridge_jniLoad(
+        JNIEnv *env,
+        jobjectArray internal_storage_paths_java) {
+    int nbFilePaths = env->GetArrayLength(internal_storage_paths_java);
+    const char **filePathsInput = (const char **) calloc((size_t) nbFilePaths, sizeof(char *));
+    for (int i = 0; i < nbFilePaths; i++) {
+        jstring input = (jstring) (env->GetObjectArrayElement(internal_storage_paths_java, i));
+        filePathsInput[i] = env->GetStringUTFChars(input, 0);
+    }
+//    audioEngine->load(filePathsInput, nbFilePaths);
 }
