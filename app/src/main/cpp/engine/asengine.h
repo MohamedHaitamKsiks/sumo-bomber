@@ -58,6 +58,7 @@
 #include "Particles/Particle.h"
 #include "Particles/ParticleDescriptor.h"
 #include "Particles/ParticleEmitter.h"
-
+//include audio
+#include "AudioEngine/OboeSinePlayer.h"
 
 #endif //MY_APPLICATION_ASENGINE_H

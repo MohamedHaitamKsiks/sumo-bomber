@@ -7,9 +7,22 @@
 void SettingManager::onCreate() {
 	//make setting manager persistant in all scenes
 	persistant = true;
+	//start audio
+	sinePlayer.startAudio();
+	isPlaying = true;
 }
 
 void SettingManager::onUpdate(float delta) {
+	//stop audio
+	if(!audio && isPlaying) {
+		sinePlayer.stopAudio();
+		isPlaying = false;
+	}
+
+	if (audio && !isPlaying) {
+		sinePlayer.startAudio();
+		isPlaying = true;
+	}
 
 }
 

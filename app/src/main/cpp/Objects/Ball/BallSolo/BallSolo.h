@@ -27,7 +27,7 @@ class BallSolo : public Ball {
 public:
 	SoloManager* soloManager = nullptr;
 	BallColor color;
-	BallSoloState soloState ;
+	BallSoloState soloState = BALL_SOLO_NONE ;
 
 private:
 	//hud

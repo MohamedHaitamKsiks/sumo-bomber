@@ -88,6 +88,9 @@ add_library( # Sets the name of the library.
         #solo
         Objects/System/SoloManager/SoloManager.cpp
 
+        #audio
+        engine/AudioEngine/OboeSinePlayer.cpp
+        engine/AudioEngine/OboeSinePlayer.h
         # Provides a relative path to your source file(s).
         main.cpp
 
@@ -114,7 +117,7 @@ find_library( # Sets the name of the path variable.
 # Searches for a package provided by the game activity dependency
 
 find_package(game-activity REQUIRED CONFIG)
-
+find_package(oboe REQUIRED CONFIG)
 add_subdirectory(freetype)
 
 # Specifies libraries CMake should link to your target library. You
@@ -141,7 +144,7 @@ target_link_libraries( # Specifies the target library.
 
         # for AImageDecoder, to load images from resources
         jnigraphics
-
+        oboe::oboe
         # Links the target library to the log library
         # included in the NDK.
         ${log-lib})

@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
-    id 'com.google.gms.google-services'
+
+
+
 }
 
 android {
@@ -15,8 +17,14 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        externalNativeBuild {
+            cmake {
+                arguments "-DANDROID_STL=c++_shared"
+            }
+        }
     }
 
+    //shriking
     buildTypes {
         release {
             minifyEnabled true
@@ -24,6 +32,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    //ignore .ase files
+    aaptOptions {
+        ignoreAssetsPattern "!**/*.ase"
+        ignoreAssetsPattern "!*.ase"
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -40,7 +55,7 @@ android {
 }
 
 dependencies {
-
+    implementation 'com.google.oboe:oboe:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
     implementation 'androidx.games:games-activity:1.0.0'
