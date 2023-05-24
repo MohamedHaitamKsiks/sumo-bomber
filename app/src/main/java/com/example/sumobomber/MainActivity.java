@@ -11,11 +11,14 @@ public class MainActivity extends GameActivity {
     }
 
     private AudioEngineBridge jniBridge;
+    private AudioEngineBridge jniBridge2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         jniBridge=new AudioEngineBridge();
+        jniBridge2=new AudioEngineBridge();
         jniBridge.loadFromAssets(this, "audio/circus.wav");
+        jniBridge2.loadFromAssets2(this, "audio/test.wav");
         //jniBridge.play(0);
     }
 

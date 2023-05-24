@@ -72,7 +72,8 @@ void AudioEngine::setUpPlaybackStream() {
     oboe::AudioStreamBuilder builder;
     builder.setAudioApi(mAudioApi);
     builder.setDeviceId(mPlaybackDeviceId);
-    builder.setSharingMode(oboe::SharingMode::Exclusive);
+    //builder.setSharingMode(oboe::SharingMode::Exclusive);
+    builder.setSharingMode(oboe::SharingMode::Shared);
     builder.setPerformanceMode(oboe::PerformanceMode::LowLatency);
 //  This should match the sample rate of our source files.
     builder.setSampleRate(44100);

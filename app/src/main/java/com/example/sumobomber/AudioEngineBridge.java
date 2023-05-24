@@ -12,6 +12,9 @@ import java.util.List;
 
 public class AudioEngineBridge {
     private native void jniLoadAndPlay(String filePath);
+
+    private native void jniLoadAndPlay2(String filePath);
+
     private native void jniLoad(List<String> filePaths);
     private native void jniPlay(int id);
 
@@ -29,6 +32,12 @@ public class AudioEngineBridge {
         filePath = copiedFilePath;
         logAudioFileInfo(copiedFilePath);
         jniLoadAndPlay(copiedFilePath);
+    }
+    public void loadFromAssets2(Context context, String assetsFilePath) {
+        String copiedFilePath = Loader.copyAssetToInternalStorage(context, assetsFilePath);
+        filePath = copiedFilePath;
+        logAudioFileInfo(copiedFilePath);
+        jniLoadAndPlay2(copiedFilePath);
     }
 
     public void logAudioFileInfo(String path) {

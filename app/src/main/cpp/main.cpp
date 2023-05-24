@@ -16,8 +16,9 @@
 #include <game-activity/GameActivity.cpp>
 #include <game-text-input/gametextinput.cpp>
 
-
-static AudioEngine *audioEngine = new AudioEngine();
+//static AudioEngine *audioEngine = new AudioEngine();
+AudioEngine *audioEngine = new AudioEngine();
+AudioEngine *audioEngine2 = new AudioEngine();
 
 
 extern "C" void
@@ -35,6 +36,15 @@ Java_com_example_sumobomber_AudioEngineBridge_jniLoadAndPlay(
         jstring internal_storage_path_java) {
     const char *pathUTF = env->GetStringUTFChars(internal_storage_path_java, 0);
     audioEngine->load(pathUTF);
+}
+
+extern "C" void
+Java_com_example_sumobomber_AudioEngineBridge_jniLoadAndPlay2(
+        JNIEnv *env,
+        jobject /* this */,
+        jstring internal_storage_path_java) {
+    const char *pathUTF = env->GetStringUTFChars(internal_storage_path_java, 0);
+    audioEngine2->load(pathUTF);
 }
 extern "C" JNIEXPORT void JNICALL
 Java_com_example_sumobomber_AudioEngineBridge_jniLoad(
@@ -75,6 +85,7 @@ void handle_cmd(android_app *pApp, int32_t cmd) {
 			application->init(pApp);
             pApp->userData = application;
             audioEngine->play();
+            audioEngine2->play();
             break;
         case APP_CMD_TERM_WINDOW:
             // The window is being destroyed. Use this to clean up your userData to avoid leaking
