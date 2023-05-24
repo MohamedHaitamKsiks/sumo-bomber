@@ -15,9 +15,8 @@ public class MainActivity extends GameActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         jniBridge=new AudioEngineBridge();
-        //jniBridge.loadFromAssets(this, "raw/circus.wav");
         jniBridge.loadFromAssets(this, "audio/circus.wav");
-        jniBridge.play(0);
+        //jniBridge.play(0);
     }
 
     @Override

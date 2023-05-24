@@ -4,6 +4,7 @@
 
 #include "SettingManager.h"
 
+
 void SettingManager::onCreate() {
 	//make setting manager persistant in all scenes
 	persistant = true;
@@ -21,6 +22,7 @@ void SettingManager::onUpdate(float delta) {
 
 	if (audio && !isPlaying) {
 		sinePlayer.startAudio();
+
 		isPlaying = true;
 	}
 

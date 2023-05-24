@@ -6,7 +6,6 @@
 #define SUMO_BOMBER_SETTINGMANAGER_H
 
 #include "asengine.h"
-
 using namespace ASEngine;
 
 class SettingManager : public GameObject {
