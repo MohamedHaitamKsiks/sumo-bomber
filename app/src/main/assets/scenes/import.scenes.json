@@ -24,5 +24,10 @@
     "name": "sc_online",
     "file": "online.scene.json"
 
+  },
+  {
+    "name": "sc_plyonline",
+    "file": "onlinePlay.scene.json"
+
   }
 ]

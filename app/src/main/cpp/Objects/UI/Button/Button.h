@@ -21,7 +21,9 @@ enum ButtonType {
 	BUTTON_SETTINGS,
 	BUTTON_RESUME,
 	BUTTON_MAINSCR,
-	BUTTON_RETRY
+	BUTTON_RETRY,
+	BUTTON_PLYONLINE,
+	Text_input
 };
 
 class Button : public GameObject{

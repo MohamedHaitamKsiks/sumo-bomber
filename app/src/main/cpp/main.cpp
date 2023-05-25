@@ -28,7 +28,7 @@ void handle_cmd(android_app *pApp, int32_t cmd) {
 	//game app
 	ASEngine::Application* application;
 
-	//start window
+        //start window
     switch (cmd) {
         case APP_CMD_INIT_WINDOW:
 			if (pApp->userData != nullptr)
@@ -53,9 +53,11 @@ void handle_cmd(android_app *pApp, int32_t cmd) {
     }
 }
 
+
 /*!
  * This the main entry point for a native activity
  */
+
 void android_main(struct android_app *pApp) {
 	//log
 	ALOG("Starting Game Activity");
@@ -72,6 +74,8 @@ void android_main(struct android_app *pApp) {
     // This sets up a typical game/event loop. It will run until the app is destroyed.
     int events;
     android_poll_source *pSource;
+
+
 
 
     do {
@@ -101,9 +105,10 @@ void android_main(struct android_app *pApp) {
             android_app_clear_key_down_events(pApp);
 
             //update app
-			application->update(delta);
+			application->update(pApp, delta);
 
-			//time
+
+            //time
 			auto currentTime = std::chrono::high_resolution_clock::now();
 			delta = std::chrono::duration_cast<std::chrono::microseconds>( currentTime - pastTime ).count() / SEC_TO_MICRO;
         }

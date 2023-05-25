@@ -79,6 +79,7 @@ add_library( # Sets the name of the library.
         Objects/UI/Pause/PauseMenu.cpp
         Objects/UI/SettingScreen/SettingScreen.cpp
         Objects/UI/ButtonToggle/ButtonToggle.cpp
+        Objects/UI/ButtonToggle/KeypadButton.cpp
         Objects/UI/ScrollingBackground/ScrollingBackground.cpp
         Objects/UI/OnlineScreen/OnlineScreen.cpp
         #score

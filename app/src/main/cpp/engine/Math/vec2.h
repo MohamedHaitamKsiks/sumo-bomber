@@ -6,6 +6,7 @@
 #define MY_APPLICATION_VEC2_H
 
 #include "math.h"
+#include <sstream>
 
 namespace ASEngine {
 
@@ -103,6 +104,26 @@ namespace ASEngine {
 
         static vec2 one() {
             return vec2{1.0f, 1.0f};
+        }
+
+        // Custom toString() function
+        std::string toString() {
+            std::stringstream ss;
+            ss << "vec2(" << x << ", " << y << ")";
+            return ss.str();
+        }
+
+        // Custom fromString() function
+        static vec2 fromString(const std::string& str) {
+            vec2 result{};
+            std::stringstream ss(str);
+            char ch;
+            ss >> ch; // Read and discard the opening parenthesis '('
+            ss >> result.x;
+            ss >> ch; // Read and discard the comma ','
+            ss >> result.y;
+            ss >> ch; // Read and discard the closing parenthesis ')'
+            return result;
         }
 
 

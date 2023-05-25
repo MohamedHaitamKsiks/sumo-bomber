@@ -25,6 +25,7 @@
 #include "../Thirdparty/json.hpp"
 
 
+
 namespace ASEngine {
 
 	class Application {
@@ -36,7 +37,7 @@ namespace ASEngine {
 		void poolAndroidInput(android_app* app);
 
 		//update
-		void update(float delta);
+		void update(android_app* pApp, float delta);
 
 		//terminate
 		void terminate();

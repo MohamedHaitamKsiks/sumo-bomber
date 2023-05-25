@@ -9,6 +9,17 @@ namespace ASEngine {
 
 	bool Application::firstLoad = false;
 
+	extern "C" void GameTextInputGetStateCB(void *ctx, const struct GameTextInputState *state) {
+
+			if ( !state) return;
+
+			// Process the text event(s).
+			ALOG("UserInputText: %s", state->text_UTF8);
+            Instance::text = (char *)state->text_UTF8;
+			// Clear the text input flag.
+			Instance::textInputState = 0;
+	}
+
 	void Application::init(android_app* app) {
 		//init resource manager
 		Resource::init(app->activity->assetManager);
@@ -41,6 +52,7 @@ namespace ASEngine {
 		Camera::current = new Camera();
 		//init input
 		InputEvent::init(app);
+
 	}
 
 	void Application::onInputEvent(InputEvent &inputEvent) {
@@ -51,7 +63,7 @@ namespace ASEngine {
 		}
 	}
 
-	void Application::update(float delta) {
+	void Application::update(android_app* pApp,float delta) {
 		//update instance
 		Instance::update(delta);
 		//context update render area
@@ -87,6 +99,12 @@ namespace ASEngine {
 		graphics.update();
 		//flush context
 		context->flush();
+
+		//soft keyboard
+		if (Instance::showkeyboard){
+			GameActivity_showSoftInput(pApp->activity,GAMEACTIVITY_SHOW_SOFT_INPUT_IMPLICIT);
+			Instance::showkeyboard = false;
+		}
 	}
 
 	void Application::terminate() {
@@ -127,7 +145,15 @@ namespace ASEngine {
 
 			// Process input
 			onInputEvent(event);
+			if (app->textInputState) {
+				GameActivity_getTextInputState(
+						app->activity,
+						GameTextInputGetStateCB, 0 // App's event handler shown above.
+									);
+			}onInputEvent(event);
 		}
+
+
 	}
 
 	void Application::loadProjectSettings() {
