@@ -36,6 +36,7 @@
 #include "UI/ButtonToggle/ButtonToggle.h"
 #include "UI/ScrollingBackground/ScrollingBackground.h"
 #include "UI/OnlineScreen/OnlineScreen.h"
+#include "UI/ButtonToggle/KeypadButton.h"
 
 
 //add every game object here
@@ -62,6 +63,7 @@ static void loadGameObjects() {
 	ASEngine::Instance::addGameObject<SettingManager>("SettingManager");
 	ASEngine::Instance::addGameObject<SettingScreen>("SettingScreen");
 	ASEngine::Instance::addGameObject<ButtonToggle>("ButtonToggle");
+	ASEngine::Instance::addGameObject<KeypadButton>("Keypad");
 	ASEngine::Instance::addGameObject<ScrollingBackground>("ScrollingBackground");
 	ASEngine::Instance::addGameObject<OnlineScreen>("OnlineScreen");
 }

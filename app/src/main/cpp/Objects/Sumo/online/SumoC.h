@@ -17,6 +17,8 @@ class SumoC : public Sumo {
 
     //on create
     void onCreate() override ;
+    void onInputEvent(InputEvent event) override;
+    void onUpdate(float delta) override;
     int Connect();
 };
 

@@ -10,13 +10,14 @@
 #include <netinet/in.h>     // Internet address structures and functions
 #include <arpa/inet.h>      // IP address manipulation functions
 #include <unistd.h>
-#include "../Ball.h"
+
 #include "../../UI/HudVs/HudVs.h"
+#include "BallVs.h"
 
 using namespace ASEngine;
 
 class BallVson: public  Ball{
-    int socketDescriptor = socket(AF_INET, SOCK_DGRAM, 0);
+    int socketDescriptor = Instance::socketDescriptor;
     HudVs* hud;
     //oncreate
     void onCreate();

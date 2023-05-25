@@ -100,6 +100,11 @@ void Button::onClick() {
 			// Redirect to online scene
 			transitionManager->changeSceneTo("sc_online");
 			break;
+		case BUTTON_PLYONLINE:
+			// Redirect to online scene
+			Instance::Connect(Instance::text);
+			transitionManager->changeSceneTo("sc_plyonline");
+			break;
 		case BUTTON_SETTINGS:
 			// Redirect to settings scene
 			transitionManager->changeSceneTo("sc_setting");
@@ -117,6 +122,10 @@ void Button::onClick() {
 			break;
 		case BUTTON_RETRY:
 			transitionManager->changeSceneTo(Scene::getCurrentScene());
+
+			break;
+		case Text_input:
+			Instance::showkeyboard = true;
 			break;
 		default:
 			// Handle unrecognized button type

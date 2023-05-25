@@ -17,6 +17,7 @@ class SumoR : public Sumo {
 
     //on create
     void onCreate() override ;
+    void onInputEvent(InputEvent event) override;
     int Connect();
 };
 

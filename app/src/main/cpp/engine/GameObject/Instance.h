@@ -8,7 +8,10 @@
 #include <string>
 #include <vector>
 #include <unordered_map>
-
+#include <sys/socket.h>     // Socket functions and structures
+#include <netinet/in.h>     // Internet address structures and functions
+#include <arpa/inet.h>      // IP address manipulation functions
+#include <unistd.h>
 #include "GameObject.h"
 #include "../InputEvent/InputEvent.h"
 #include "../log.h"
@@ -23,9 +26,16 @@ namespace ASEngine {
 		static GameObject* find(const GameObjectID& name);
 		//time scale
 		static float timeScale;
-
+		static int socketDescriptor ;
 		//pause handling
 		static bool paused;
+
+		//SHOW KEYBOARD
+		static bool showkeyboard;
+		static int textInputState;
+		static char* text;
+		static std::string ipaddr;
+		static std::string destipaddr;
 
 		enum GameState {
 			GAME_PLAYING,
@@ -55,6 +65,11 @@ namespace ASEngine {
 		//instances
 		static std::vector<GameObject*> instances;
 
+		//networking
+		static int Connect(char* addr);
+
+		static std::string server();
+
     private:
         //game objects
         static std::unordered_map<std::string, GameObject* (*)()> gameObjects;
@@ -64,6 +79,8 @@ namespace ASEngine {
         static std::vector<GameObject*> destroyQueue;
         //clean destroy queue
         static void cleanDestroyQueue();
+
+
 
     };
 
