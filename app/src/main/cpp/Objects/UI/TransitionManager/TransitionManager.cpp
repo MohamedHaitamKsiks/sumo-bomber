@@ -23,7 +23,6 @@ void TransitionManager::onUpdate(float delta) {
 		nextSceneId = "";
 		fadeOut();
 	}
-
 }
 
 void TransitionManager::onDraw(Graphics &graphics) {

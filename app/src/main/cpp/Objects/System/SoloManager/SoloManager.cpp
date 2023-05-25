@@ -136,6 +136,7 @@ void SoloManager::spawnBall() {
 		playerArea.position.x + Random::rand_rangef(32.0f, playerArea.size.x - 32.0f),
 		playerArea.position.y + Random::rand_rangef(32.0f, playerArea.size.y - 32.0f)
 	};
+
 	BallSolo* ball = (BallSolo*) Instance::create("BallSolo");
 	ball->position = ballPosition;
 	ball->soloManager = this;

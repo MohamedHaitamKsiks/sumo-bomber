@@ -34,11 +34,8 @@ namespace ASEngine {
 			float(Screen::getWindowHeight()) / float(Screen::getHeight())
 		};
 
-
-
 		event.pointerPosition.x = GameActivityPointerAxes_getX(&motionEvent->pointers[ptrIndex]) / screenWindowRatio.x;
 		event.pointerPosition.y = GameActivityPointerAxes_getY(&motionEvent->pointers[ptrIndex]) / screenWindowRatio.y;
-
 
 		//return event
 		return event;

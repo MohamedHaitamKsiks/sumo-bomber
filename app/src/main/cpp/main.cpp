@@ -2,7 +2,6 @@
 
 #include <jni.h>
 
-
 #include "engine/asengine.h"
 #include "Objects/loadGameObject.h"
 
