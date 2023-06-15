@@ -32,7 +32,7 @@ void OboeSinePlayer::stopAudio() {
         mStream.reset();
     }
 }
-
+/* old
 oboe::DataCallbackResult OboeSinePlayer::onAudioReady(oboe::AudioStream *oboeStream, void *audioData, int32_t numFrames) {
     std::chrono::steady_clock::time_point now = std::chrono::steady_clock::now();
     std::chrono::duration<double> elapsed = now - startTime;
@@ -44,6 +44,32 @@ oboe::DataCallbackResult OboeSinePlayer::onAudioReady(oboe::AudioStream *oboeStr
         for (int j = 0; j < kChannelCount; j++)
         {
             floatData[i * kChannelCount + j] = sampleValue;
+        }
+        mPhase += (static_cast<int>(elapsedTime)%5)*mPhaseIncrement;
+
+        if (mPhase >= kTwoPi) mPhase -= kTwoPi;
+    }
+
+    return oboe::DataCallbackResult::Continue;
+}
+*/
+void OboeSinePlayer::fillVector(std::vector <float> &vector) {
+    data=vector;
+
+}
+oboe::DataCallbackResult OboeSinePlayer::onAudioReady(oboe::AudioStream *oboeStream, void *audioData, int32_t numFrames) {
+    std::chrono::steady_clock::time_point now = std::chrono::steady_clock::now();
+    std::chrono::duration<double> elapsed = now - startTime;
+    double elapsedTime = elapsed.count();
+
+    float *floatData = (float *) audioData;
+    for (int i = 0; i < numFrames; ++i) {
+        float sampleValue = kAmplitude * sinf(mPhase);
+        for (int j = 0; j < kChannelCount; j++)
+        {
+            floatData[i * kChannelCount + j] = data[count];
+            //floatData[i * kChannelCount + j] = sampleValue;
+            count++;
         }
         mPhase += (static_cast<int>(elapsedTime)%5)*mPhaseIncrement;
 

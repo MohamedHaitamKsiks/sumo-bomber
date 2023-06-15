@@ -12,10 +12,12 @@ using namespace ASEngine;
 class SettingManager : public GameObject {
 
 public:
+
 	bool audio = false;
 	bool colorBlindAccessibility = false;
+
 private:
-	OboeSinePlayer sinePlayer;
+
 	bool isPlaying = false;
 
 	void onCreate();

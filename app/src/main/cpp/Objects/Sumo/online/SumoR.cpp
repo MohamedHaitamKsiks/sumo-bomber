@@ -54,7 +54,8 @@ void SumoR::onInputEvent(InputEvent event) {
             }
             //dash
             if (pointerDown) {
-                if ( event.pointerIndex != pointerIndex && buttonArea.pointInside(event.pointerPosition))
+                if (event.pointerIndex != pointerIndex &&
+                    buttonArea.pointInside(event.pointerPosition))
                     dash();
                 break;
             }
@@ -86,7 +87,8 @@ void SumoR::onInputEvent(InputEvent event) {
                 break;
             pointerDown = false;
             direction = vec2::zero();
-            int bytesSent = send(Instance::socketDescriptor, direction.toString().c_str(), direction.toString().length(), 0);
+            int bytesSent = send(Instance::socketDescriptor, direction.toString().c_str(),
+                                 direction.toString().length(), 0);
 
             if (bytesSent == -1) {
                 ALOG("Failed to send data to the server.");
@@ -95,4 +97,5 @@ void SumoR::onInputEvent(InputEvent event) {
 
                 break;
 
-    }
+            }
+    }}
