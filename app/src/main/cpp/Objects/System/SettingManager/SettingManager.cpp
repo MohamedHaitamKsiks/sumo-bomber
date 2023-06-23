@@ -3,16 +3,18 @@
 //
 
 #include "SettingManager.h"
-
+OboeSinePlayer sinePlayer;
 void SettingManager::onCreate() {
 	//make setting manager persistant in all scenes
+	audio=true;
 	persistant = true;
 	//start audio
-	sinePlayer.startAudio();
-	isPlaying = true;
+	//sinePlayer.startAudio();
+	//isPlaying = true;
 }
 
 void SettingManager::onUpdate(float delta) {
+
 	//stop audio
 	if(!audio && isPlaying) {
 		sinePlayer.stopAudio();

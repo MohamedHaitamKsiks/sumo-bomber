@@ -15,6 +15,7 @@
 #include <math.h>
 #include <chrono>
 #include <android/log.h>
+#include <vector>
 
 using namespace oboe;
 
@@ -24,6 +25,7 @@ public:
     virtual ~OboeSinePlayer() = default;
     int32_t startAudio();
     void stopAudio();
+    void fillVector(std::vector <float>& vector);
     oboe::DataCallbackResult onAudioReady(oboe::AudioStream *oboeStream, void *audioData, int32_t numFrames) override;
 
 private:
@@ -31,7 +33,7 @@ private:
     std::shared_ptr<oboe::AudioStream> mStream;
 
     static int constexpr kChannelCount = 2;
-    static int constexpr kSampleRate = 48000;
+    static int constexpr kSampleRate = 44100;
     static float constexpr kAmplitude = 0.5f;
     static float constexpr kFrequency = 440;
     static float constexpr kPI = M_PI;
@@ -41,8 +43,10 @@ private:
     std::chrono::steady_clock::time_point startTime;
     static double constexpr mPhaseIncrement = kFrequency * kTwoPi / (double) kSampleRate;
     float mPhase = 0.0;
+    public: std::vector <float> data;
+    int count=0;
 };
-
+//extern OboeSinePlayer oboeSinePlayer;
 #endif //SUMO_BOMBER_PLAYSOUND_H
 
 

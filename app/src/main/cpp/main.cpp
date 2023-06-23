@@ -12,6 +12,31 @@
 
 #include <game-activity/GameActivity.cpp>
 #include <game-text-input/gametextinput.cpp>
+#include "Objects/System/SettingManager/SettingManager.h"
+extern "C" JNIEXPORT jint JNICALL
+Java_com_example_sumobomber_MainActivity_VectorFromJNI(JNIEnv* env, jobject obj,
+        jfloatArray vectorArray)
+{
+    std::vector <float> vector;
+    jsize size = env->GetArrayLength(vectorArray);
+    jfloat* elements = env->GetFloatArrayElements(static_cast<jfloatArray>(vectorArray), nullptr);
+    for (jsize i = 0; i < size; ++i) {
+        vector.push_back(elements[i]);
+        //float value = elements[i];
+        //__android_log_print(ANDROID_LOG_DEBUG, LOG_TAG, "%.7f", value);
+        //__android_log_print(ANDROID_LOG_DEBUG, "test", "%.7f", vector[i]);
+    }
+
+
+    sinePlayer.fillVector(vector);
+
+    //for (jsize i = 0; i < size; ++i) {__android_log_print(ANDROID_LOG_DEBUG, "test2", "%.7f", sinePlayer.data[i]);}
+
+    //sinePlayer.startAudio();
+
+    env->ReleaseFloatArrayElements(vectorArray, elements, JNI_ABORT);
+    return 0;
+}
 
 extern "C" {
 

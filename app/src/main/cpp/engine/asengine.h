@@ -60,5 +60,5 @@
 #include "Particles/ParticleEmitter.h"
 //include audio
 #include "AudioEngine/OboeSinePlayer.h"
-
+extern OboeSinePlayer sinePlayer;;
 #endif //MY_APPLICATION_ASENGINE_H
