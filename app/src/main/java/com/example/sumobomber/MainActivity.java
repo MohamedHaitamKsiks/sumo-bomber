@@ -40,7 +40,7 @@ public class MainActivity extends GameActivity {
 
                 short valueTest = ByteBuffer.wrap(buffer).order(ByteOrder.LITTLE_ENDIAN).getShort();
 
-                if(j==44100*10){break;}
+                if(j==44100*2*60){break;}
 
                 float floatValue = (float) valueTest / 32768.0f;  // Convert short value to float in the range [-1.0, 1.0]
 

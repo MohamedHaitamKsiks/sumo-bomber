@@ -70,6 +70,10 @@ oboe::DataCallbackResult OboeSinePlayer::onAudioReady(oboe::AudioStream *oboeStr
             floatData[i * kChannelCount + j] = data[count];
             //floatData[i * kChannelCount + j] = sampleValue;
             count++;
+            if(count>=44100*2*60)
+            {
+                count=0;
+            }
         }
         mPhase += (static_cast<int>(elapsedTime)%5)*mPhaseIncrement;
 
